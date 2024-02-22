@@ -1,0 +1,31 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1144px;
+  padding: 0px 15px;
+  @media (max-width: 1144px) {
+    max-width: 970px;
+  }
+  @media (max-width: 992px) {
+    max-width: 750px;
+  }
+  @media (max-width: 767px) {
+    max-width: none;
+  }
+}
+
+.wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex; /* для того чтобы прибить footer к низу */
+  flex-direction: column;
+}
+
+.page {
+  flex: 1 1 auto; /* для того чтобы прибить footer к низу */
+}
+
+.footer {
+  background-color: white;
+  flex: 0 0 auto;
+}
