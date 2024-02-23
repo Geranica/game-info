@@ -1,8 +1,9 @@
+import { forwardRef } from "react";
 import './GameCard.scss';
 
-const GameCard = ({name, image}) => {
+const GameCard = forwardRef(({name, image}, ref) => {
   return (
-    <li className="game-card">
+    <li ref={ref} className="game-card">
       <div className="game-card__container">
         <div className="game-card__img">
           <img src={image} alt="" />
@@ -11,6 +12,6 @@ const GameCard = ({name, image}) => {
       </div>
     </li>
   );
-};
+});
 
 export default GameCard;
