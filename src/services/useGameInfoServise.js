@@ -10,7 +10,10 @@ const useGameInfoServise = () => {
     const result = await request(
       `${_apiBase}games${_apiKey}&page=${page}&page_size=${pageSize}`
     );
-    return result.results.map((item) => _transformGame(item));
+    return {
+      games: result.results.map((item) => _transformGame(item)),
+      count: result.count,
+    };
   };
 
   const getGame = async (id) => {
@@ -18,7 +21,7 @@ const useGameInfoServise = () => {
     return _transformGame(result);
   };
 
-  const getGameScreenshots = async (id, page = 1, pageSize = 12) => {
+  const getGameScreenshots = async (id, page = 1, pageSize = 20) => {
     const result = await request(
       `${_apiBase}games/${id}/screenshots${_apiKey}&page=${page}&page_size=${pageSize}`
     );

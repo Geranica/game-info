@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-import useGameInfoServise from "../../services/MarvelService";
+import useGameInfoServise from "../../services/useGameInfoServise";
 
 import SearchPanel from "../SearchPanel/SearchPanel";
 import GameCard from "../GameCard/GameCard";
@@ -9,20 +9,24 @@ import GameCard from "../GameCard/GameCard";
 import "./SearchSection.scss";
 
 const SearchSection = () => {
-  console.log("render");
+  
 
   const [targetElement, targetElementIsVisible] = useInView({
     triggerOnce: true,
-    threshold: 0.5,
+    threshold: 0.3,
   });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [games, setGames] = useState([]);
+  const [countOfGames, setCountOfGames] = useState(null);
 
   const { getAllGames } = useGameInfoServise();
 
   const loadMoreGames = (currentPage) => {
-    getAllGames(currentPage).then((result) => onGamesLoaded(result));
+    getAllGames(currentPage).then((result) => {
+      onGamesLoaded(result.games);
+      setCountOfGames (result.count);
+    });
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
@@ -35,7 +39,7 @@ const SearchSection = () => {
   }, []);
 
   useEffect(() => {
-    if (targetElementIsVisible) {
+    if (targetElementIsVisible && games.length < countOfGames) {
       loadMoreGames(currentPage);
     }
   }, [targetElementIsVisible]);
@@ -47,6 +51,7 @@ const SearchSection = () => {
         key={item.id}
         name={item.gameName}
         image={item.background}
+        id={item.id}
       />
     );
   });
