@@ -14,7 +14,7 @@ const App = () => {
         <Header />
         <main className="page">
           <Routes>
-            <Route path="/" element={<SearchSection />} />
+            <Route path="/" key="/" element={<SearchSection />} />
             <Route path="/game/:gameId" element={<GamePage />} />
           </Routes>
         </main>

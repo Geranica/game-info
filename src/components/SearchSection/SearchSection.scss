@@ -1,17 +1,20 @@
 .search-section {
-   padding-top: 140px;
+  padding-top: 140px;
 
-   // .search-section__container
+  // .search-section__container
 
-   &__container {
-   }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .container {
 }
 
 .games-list {
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-   column-gap: 71px;
-   row-gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  column-gap: 71px;
+  row-gap: 60px;
 }

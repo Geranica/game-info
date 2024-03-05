@@ -1,7 +1,7 @@
 import { useHttp } from "../hooks/http.hook";
 
 const useGameInfoServise = () => {
-  const { loading, request, error, clearError } = useHttp();
+  const { request, clearError } = useHttp();
 
   const _apiBase = "https://api.rawg.io/api/";
   const _apiKey = "?key=53b00c09574c4413b53b51095b44e4cd";
@@ -38,6 +38,7 @@ const useGameInfoServise = () => {
       description: game.description,
       released: game.released,
       website: game.website,
+      platforms: game.platforms
     };
   };
 
