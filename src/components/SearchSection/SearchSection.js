@@ -1,9 +1,9 @@
 import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeletonArray";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import useInfiniteScroll from "../../hooks/infiniteScroll";
 
-import { useEffect, useRef } from "react";
-import { useInView } from "react-intersection-observer";
+import { useRef } from "react";
 import { useGetGamesQuery, useGetGamesBySearchQuery } from "../../api/apiSlice";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -39,22 +39,10 @@ const SearchSection = () => {
   const allGamesContent = useGetGamesQuery(currentPage);
   const dispatch = useDispatch();
 
-  console.log(searchedGamesContent);
-
-  const [targetElement, targetElementIsVisible] = useInView({
-    triggerOnce: true,
-    threshold: 0.9,
-  });
-
   const increasePage = () => {
     dispatch(nextPage());
   };
-
-  useEffect(() => {
-    if (targetElementIsVisible) {
-      increasePage();
-    }
-  }, [targetElementIsVisible]);
+  const { targetElement } = useInfiniteScroll(increasePage);
 
   const searchedGamesElements = searchedGamesContent?.data?.map((item) => {
     return (
