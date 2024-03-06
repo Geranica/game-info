@@ -1,15 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDebounce } from "use-debounce";
+import { searchGame } from "../SearchSection/gamesSlice";
+import { useDispatch } from "react-redux";
+
 import "./SearchPanel.scss";
 import sprite from "../../icons/sprite.svg";
 
 const SearchPanel = () => {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [debounceValue] = useDebounce(inputValue, 1500);
 
   const handleOnChange = (e) => {
     setInputValue(e.target.value);
   };
 
+  useEffect(() => {
+    dispatch(searchGame(debounceValue));
+  }, [debounceValue]);
+  
   const iconClassName = !isFocused
     ? "search-panel__icon"
     : "search-panel__icon search-panel__icon_active";

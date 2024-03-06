@@ -42,7 +42,16 @@ export const apiSlice = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getGamesBySearch: builder.query({
+      query: (gameName) => `/games?key=${_apiKey}&search=${gameName}`,
+      transformResponse: (response) => {
+        return response.results.map((item) => _transformGame(item));
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
   }),
 });
 
-export const { useGetGamesQuery } = apiSlice;
+export const { useGetGamesQuery, useGetGamesBySearchQuery } = apiSlice;

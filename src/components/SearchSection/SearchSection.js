@@ -1,68 +1,64 @@
 import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeletonArray";
 import Spinner from "../Spinner/Spinner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import { useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import { useGetGamesQuery } from "../../api/apiSlice";
+import { useGetGamesQuery, useGetGamesBySearchQuery } from "../../api/apiSlice";
 
 import { useDispatch, useSelector } from "react-redux";
-import { selectPage, nextPage } from "./gamesSlice";
+import { selectPage, nextPage, selectDesiredGame } from "./gamesSlice";
 
-import SearchPanel from "../SearchPanel/SearchPanel";
 import GameCard from "../GameCard/GameCard";
 
 import "./SearchSection.scss";
 
-const setContent = (isLoading, isSuccess, elements, isFetching) => {
+const setContent = ({ isLoading, isSuccess, content, isFetching, isError }) => {
   if (isLoading) {
     return <GameCardSkeletonArray skeletonCounts={12} />;
   } else if (isFetching) {
     return (
       <>
-        <ul className="games-list">{elements}</ul>
+        <ul className="games-list">{content}</ul>
         <Spinner />
       </>
     );
   } else if (isSuccess) {
-    return <ul className="games-list">{elements}</ul>;
+    return <ul className="games-list">{content}</ul>;
+  } else if (isError) {
+    return <ErrorMessage />;
   }
 };
 
 const SearchSection = () => {
+  const searchTerm = useSelector(selectDesiredGame);
   const currentPage = useSelector(selectPage);
+  const searchedGamesContent = useGetGamesBySearchQuery(searchTerm, {
+    skip: !searchTerm,
+  });
+  const allGamesContent = useGetGamesQuery(currentPage);
   const dispatch = useDispatch();
-  const {
-    data = {},
-    isFetching,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetGamesQuery(currentPage);
 
-  console.log("render");
+  console.log(searchedGamesContent);
+
   const [targetElement, targetElementIsVisible] = useInView({
     triggerOnce: true,
     threshold: 0.9,
   });
-  const myRef = useRef();
-  myRef.current = data?.count;
 
   const increasePage = () => {
     dispatch(nextPage());
-    myRef.current = data?.count;
   };
 
   useEffect(() => {
-    if (targetElementIsVisible && data.games?.length < myRef.current) {
+    if (targetElementIsVisible) {
       increasePage();
     }
   }, [targetElementIsVisible]);
 
-  const elements = data.games?.map((item, index) => {
+  const searchedGamesElements = searchedGamesContent?.data?.map((item) => {
     return (
       <GameCard
-        ref={index === data.games?.length - 1 ? targetElement : null}
         key={item.id}
         name={item.gameName}
         image={item.background}
@@ -71,10 +67,39 @@ const SearchSection = () => {
     );
   });
 
+  const allGamesElements = allGamesContent?.data?.games.map((item, index) => {
+    return (
+      <GameCard
+        ref={
+          index === allGamesContent.data.games.length - 1 ? targetElement : null
+        }
+        key={item.id}
+        name={item.gameName}
+        image={item.background}
+        id={item.id}
+      />
+    );
+  });
+
+  const content = searchTerm
+    ? {
+        content: searchedGamesElements,
+        isLoading: searchedGamesContent.isLoading,
+        isSuccess: searchedGamesContent.isSuccess,
+        isFetching: searchedGamesContent.isFetching,
+        isError: searchedGamesContent.isError,
+      }
+    : {
+        content: allGamesElements,
+        isLoading: allGamesContent.isLoading,
+        isSuccess: allGamesContent.isSuccess,
+        isFetching: allGamesContent.isFetching,
+        isError: allGamesContent.isError,
+      };
   return (
     <section className="search-section">
       <div className="search-section__container container">
-        {setContent(isLoading, isSuccess, elements, isFetching)}
+        {setContent(content)}
       </div>
     </section>
   );
