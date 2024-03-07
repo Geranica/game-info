@@ -1,0 +1,35 @@
+.game-screenshots {
+  // .game-screenshots__container
+
+  &__container {
+  }
+
+  // .game-screenshots__block
+
+  &__block {
+    align-self: flex-start;
+    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    //display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    padding-top: 40px;
+  }
+
+  // .game-screenshots__screenshot
+
+  &__screenshot {
+    border-radius: 30px 30px 30px 30px;
+    //transform: skew(-15deg);
+    flex: 0 1 50%;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+
+    img {
+      width: 100%;
+      height: 100;
+      object-fit: cover;
+    }
+  }
+}

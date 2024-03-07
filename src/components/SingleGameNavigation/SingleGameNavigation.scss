@@ -1,0 +1,65 @@
+.single-game-navigation {
+  height: 55px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.6);
+  align-items: center;
+  display: flex;
+
+  // .single-game-navigation__container
+
+  &__container {
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  // .single-game-navigation__list
+
+  &__list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+  }
+
+  // .single-game-navigation__item
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    &::before {
+      content: "";
+      top: 25px;
+      border-radius: 20px;
+      height: 6px;
+      background-color: rgb(83, 83, 138);
+      position: absolute;
+      width: 0;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    &_active::before {
+      content: "";
+      top: 25px;
+      border-radius: 20px;
+      height: 5px;
+      background-color: rgb(83, 83, 138);
+      position: absolute;
+      width: 100%;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+  }
+
+  // .single-game-navigation__item-link
+
+  &__item-link {
+    color: #3f3f84;
+    font-size: 15px;
+    font-weight: 500;
+  }
+}

@@ -15,6 +15,7 @@ const _transformGame = (game) => {
 };
 
 export const apiSlice = createApi({
+  keepUnusedDataFor: 30 * 60,
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.rawg.io/api",
@@ -51,7 +52,24 @@ export const apiSlice = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getGame: builder.query({
+      query: (id) => `/games/${id}?key=${_apiKey}`,
+      transformResponse: (response) => {
+        return _transformGame(response);
+      },
+    }),
+    getGameScreenshots: builder.query({
+      query: (id) => `/games/${id}/screenshots?key=${_apiKey}&page_size=20`,
+      transformResponse: (response) => {
+        return response.results.map((item) => item.image);
+      },
+    }),
   }),
 });
 
-export const { useGetGamesQuery, useGetGamesBySearchQuery } = apiSlice;
+export const {
+  useGetGamesQuery,
+  useGetGamesBySearchQuery,
+  useGetGameQuery,
+  useGetGameScreenshotsQuery,
+} = apiSlice;

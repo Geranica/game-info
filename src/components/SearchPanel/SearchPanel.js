@@ -10,7 +10,7 @@ const SearchPanel = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const [debounceValue] = useDebounce(inputValue, 1500);
+  const [debounceValue] = useDebounce(inputValue, 800);
 
   const handleOnChange = (e) => {
     setInputValue(e.target.value);
