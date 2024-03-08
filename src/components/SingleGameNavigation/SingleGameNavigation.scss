@@ -1,7 +1,7 @@
 .single-game-navigation {
   height: 55px;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgb(209, 218, 244, 0.7);
   align-items: center;
   display: flex;
 
@@ -58,8 +58,14 @@
   // .single-game-navigation__item-link
 
   &__item-link {
-    color: #3f3f84;
+    color: #6465c7;
     font-size: 15px;
     font-weight: 500;
+    &:hover {
+      color: rgb(69, 69, 149);
+    }
+    &_active {
+      color: rgb(69, 69, 149);
+    }
   }
 }

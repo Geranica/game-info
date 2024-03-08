@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
 import { Route, Routes } from "react-router-dom";
 import GameScreenshots from "../../GameScreenshots/GameScreenshots";
 import AboutGame from "../../AboutGame/AboutGame";
@@ -17,10 +16,7 @@ const GamePage = () => {
   const { data: game = {} } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
 
-  const { gameName, background, description } = game;
-
-  console.log('ren')
- 
+  const { gameName, background, description, metacritic } = game;
 
   const backgroundImageStyle = {
     backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0), #151515), url(${background})`,
@@ -31,12 +27,12 @@ const GamePage = () => {
       <div className="game-page__container container">
         <h2 className="game-page__name">{gameName}</h2>
         <SingleGameNavigation gameId={gameId} />
-  
-
         <Routes>
           <Route
             path="about-game"
-            element={<AboutGame description={description} />}
+            element={
+              <AboutGame metacritic={metacritic} description={description} />
+            }
           />
           <Route
             path="screenshots"

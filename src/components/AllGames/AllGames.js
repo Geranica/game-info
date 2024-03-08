@@ -35,6 +35,7 @@ const AllGames = () => {
   const increasePage = () => {
     dispatch(nextPage());
   };
+  console.log(allGamesContent)
   const { targetElement } = useInfiniteScroll(increasePage);
   const allGamesElements = allGamesContent.data?.games.map((item, index) => {
     return (

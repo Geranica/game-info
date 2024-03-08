@@ -10,16 +10,17 @@ const SingleGameNavigation = ({ gameId }) => {
   ];
 
   const elements = linksContent.map((item) => {
-    const className =
+    const classNameLi =
       item.path === activeLink
         ? "single-game-navigation__item single-game-navigation__item_active"
         : "single-game-navigation__item";
+    const classNameLink =
+      item.path === activeLink
+        ? "single-game-navigation__item-link single-game-navigation__item-link_active"
+        : "single-game-navigation__item-link";
     return (
-      <li key={item.path} className={className}>
-        <Link
-          to={`/game/${gameId}/${item.path}`}
-          className="single-game-navigation__item-link"
-        >
+      <li key={item.path} className={classNameLi}>
+        <Link to={`/game/${gameId}/${item.path}`} className={classNameLink}>
           {item.label}
         </Link>
       </li>

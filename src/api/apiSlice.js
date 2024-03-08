@@ -59,7 +59,7 @@ export const apiSlice = createApi({
       },
     }),
     getGameScreenshots: builder.query({
-      query: (id) => `/games/${id}/screenshots?key=${_apiKey}&page_size=20`,
+      query: (id) => `/games/${id}/screenshots?key=${_apiKey}&page_size=20&page=1`,
       transformResponse: (response) => {
         return response.results.map((item) => item.image);
       },
