@@ -8,11 +8,11 @@ const Header = () => {
     <header className="header">
       <div className="header__container container">
         <div className="header__logo">
-          <a href="#" className="header__logo-link">
+          <Link to="/" className="header__logo-link">
             GameInfo
-          </a>
+          </Link>
         </div>
-        <SearchPanel/>
+        <SearchPanel />
       </div>
     </header>
   );

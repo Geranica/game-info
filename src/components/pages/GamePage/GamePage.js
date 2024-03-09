@@ -13,10 +13,18 @@ import "./GamePage.scss";
 
 const GamePage = () => {
   const { gameId } = useParams();
-  const { data: game = {} } = useGetGameQuery(gameId);
+  const { data: game = [] } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
 
-  const { gameName, background, description, metacritic } = game;
+  const {
+    gameName,
+    background,
+    description,
+    metacritic,
+    platforms,
+    released,
+    developers = [],
+  } = game;
 
   const backgroundImageStyle = {
     backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0), #151515), url(${background})`,
@@ -31,7 +39,12 @@ const GamePage = () => {
           <Route
             path="about-game"
             element={
-              <AboutGame metacritic={metacritic} description={description} />
+              <AboutGame
+                developers={developers}
+                released={released}
+                metacritic={metacritic}
+                description={description}
+              />
             }
           />
           <Route

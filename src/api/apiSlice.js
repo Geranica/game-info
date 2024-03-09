@@ -11,6 +11,9 @@ const _transformGame = (game) => {
     released: game.released,
     website: game.website,
     platforms: game.platforms,
+    genres: game.genres,
+    developers: game.developers,
+    publishers: game.publishers,
   };
 };
 
@@ -55,11 +58,13 @@ export const apiSlice = createApi({
     getGame: builder.query({
       query: (id) => `/games/${id}?key=${_apiKey}`,
       transformResponse: (response) => {
+        console.log(response);
         return _transformGame(response);
       },
     }),
     getGameScreenshots: builder.query({
-      query: (id) => `/games/${id}/screenshots?key=${_apiKey}&page_size=20&page=1`,
+      query: (id) =>
+        `/games/${id}/screenshots?key=${_apiKey}&page_size=20&page=1`,
       transformResponse: (response) => {
         return response.results.map((item) => item.image);
       },

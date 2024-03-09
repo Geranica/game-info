@@ -7,16 +7,24 @@
     //gap: 10px;
   }
 
+  // .about-game__main-information
+
+  &__main-information {
+    display: flex;
+    column-gap: 30px;
+    color: black;
+  }
+
   // .about-game__description
 
   &__description {
-    background-color: rgb(181, 194, 236, 0.3);
+    background-color: rgb(126, 133, 214, 0.8);
     flex: 0 1 600px;
     border-radius: 15px;
     padding: 20px;
-    font-size: 19px;
+    font-size: 17px;
     font-weight: 400;
-    line-height: 1.4;
+    line-height: 1.5;
     p {
       margin-bottom: 10px;
       br {
@@ -64,4 +72,33 @@
   &__metacritic-label {
     font-size: 17px;
   }
+
+  // .about-game__summary
+
+  &__summary {
+    align-self: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 17px;
+    background-color: #7e85d6cc;
+  }
+
+  // .about-game__date-block
+
+  &__date-block {
+    display: flex;
+    column-gap: 100px;
+  }
+
+  // .about-game__date-label
+
+  &__date-label {
+  }
+
+  // .about-game__date-value
+
+  &__date-value {
+    color: #ffaf6a;
+  }
 }
+
