@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import GameScreenshots from "../../GameScreenshots/GameScreenshots";
 import AboutGame from "../../AboutGame/AboutGame";
-
+import GameRequirements from "../../GameRequirements/GameRequirements";
 import SingleGameNavigation from "../../SingleGameNavigation/SingleGameNavigation";
 import {
   useGetGameQuery,
@@ -13,7 +13,7 @@ import "./GamePage.scss";
 
 const GamePage = () => {
   const { gameId } = useParams();
-  const { data: game = [] } = useGetGameQuery(gameId);
+  const { data: game = [], isSuccess, isLoading } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
 
   const {
@@ -21,9 +21,11 @@ const GamePage = () => {
     background,
     description,
     metacritic,
-    platforms,
+    platforms = [],
     released,
     developers = [],
+    publishers = [],
+    genres = [],
   } = game;
 
   const backgroundImageStyle = {
@@ -44,8 +46,18 @@ const GamePage = () => {
                 released={released}
                 metacritic={metacritic}
                 description={description}
+                publishers={publishers}
+                genres={genres}
+                platforms={platforms}
+                isLoading={isLoading}
+                isSuccess={isSuccess}
               />
             }
+          />
+
+          <Route
+            path="requirements"
+            element={<GameRequirements requirements={platforms} />}
           />
           <Route
             path="screenshots"

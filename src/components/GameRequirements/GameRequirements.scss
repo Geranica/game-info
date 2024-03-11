@@ -1,0 +1,36 @@
+.game-requirements {
+  // .game-requirements__item
+
+  &__item {
+    line-height: 1.3;
+    &:not(:last-child) {
+      margin-bottom: 5px;
+    }
+  }
+
+  // .game-requirements__container
+
+  &__container {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px 45px;
+    @media (max-width: 809px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // .game-requirements__minimum-label
+
+  &__label {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  // .game-requirements__minimum
+
+  &__grid-element {
+    font-size: 18px;
+  }
+}

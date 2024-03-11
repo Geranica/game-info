@@ -1,13 +1,11 @@
-.about-game {
-  // .about-game__container
-  padding-top: 20px;
+.about-game-skeleton {
+
+  // .about-game-skeleton__container
 
   &__container {
-    //display: flex;
-    //gap: 10px;
   }
 
-  // .about-game__main-information
+  // .about-game-skeleton__main-information
 
   &__main-information {
     display: flex;
@@ -17,27 +15,55 @@
     justify-content: center;
   }
 
-  // .about-game__description
+  // .about-game-skeleton__description
 
   &__description {
-    color: #d1daf4;
-    background-color: rgb(126, 133, 214, 0.8);
     flex: 1 1 50%;
     border-radius: 15px;
     padding: 20px;
-    font-size: 17px;
-    font-weight: 400;
     line-height: 1.5;
-    p {
-      margin-bottom: 10px;
-      br {
-        margin-bottom: 15px;
-        display: block;
-        content: "\00a0";
-      }
-    }
+    height: 100%;
+    background-color: rgb(126, 133, 214, 0.8);
+   
   }
 
+  // .about-game-skeleton__summary
+
+  &__summary {
+    background-color: rgb(126, 133, 214, 0.8);
+    flex: 1 1 340px;
+    align-self: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px 0px;
+  }
+}
+.parent {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0px 50px;
+
+  // .parent__child-1
+
+  &__child-1 {
+    color: #d1daf4;
+    font-size: 15px;
+  }
+
+  // .parent__child-2
+
+  &__child-2 {
+    line-height: 1.2;
+    font-size: 17px;
+    color: #ffaf6a;
+    font-weight: 500;
+  }
+}
+
+.about-game {
   // .about-game__metacritic
 
   &__metacritic {
@@ -94,27 +120,5 @@
 
   &__info {
     display: flex;
-  }
-}
-
-.parent {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 0px 50px;
-
-  // .parent__child-1
-
-  &__child-1 {
-    color: #d1daf4;
-    font-size: 15px;
-  }
-
-  // .parent__child-2
-
-  &__child-2 {
-    line-height: 1.2;
-    font-size: 17px;
-    color: #ffaf6a;
-    font-weight: 500;
   }
 }
