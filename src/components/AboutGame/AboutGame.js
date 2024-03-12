@@ -1,4 +1,5 @@
 import AboutGameSkeleton from "../Skeletons/AboutGameSkeleton/AboutGameSkeleton";
+import { useGetGenresQuery } from "../../api/apiSlice";
 
 import "./AboutGame.scss";
 import DOMPurify from "dompurify";
@@ -22,7 +23,12 @@ const AboutGame = ({
   platforms,
   isLoading,
   isSuccess,
+  website,
 }) => {
+  const x = useGetGenresQuery();
+  console.log(x)
+
+  
   const date = formatDateFromString(released);
   const developersElements = developers.map((item, index) => {
     return <div key={index}>{item.name}</div>;
@@ -71,6 +77,12 @@ const AboutGame = ({
           <div className="parent">
             <div className="parent__child-1">Platforms:</div>
             <div className="parent__child-2">{platformsElements}</div>
+          </div>
+          <div className="parent">
+            <div className="parent__child-1">Official website:</div>
+            <div className="parent__child-2">
+              <a href={website}>Visit the website</a>
+            </div>
           </div>
         </div>
       </div>

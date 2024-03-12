@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-
-import SearchPanel from "../SearchPanel/SearchPanel";
 import "./Header.scss";
 
 const Header = () => {
@@ -12,7 +10,6 @@ const Header = () => {
             GameInfo
           </Link>
         </div>
-        <SearchPanel />
       </div>
     </header>
   );

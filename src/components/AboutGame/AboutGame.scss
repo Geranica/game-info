@@ -116,5 +116,12 @@
     font-size: 17px;
     color: #ffaf6a;
     font-weight: 500;
+    a {
+      line-height: 1.2;
+      font-size: 17px;
+      color: #f69643;
+      font-weight: 500;
+      text-decoration: underline;
+    }
   }
 }

@@ -1,21 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { transformGame } from "./transormResponse";
 
 const _apiKey = "53b00c09574c4413b53b51095b44e4cd";
-const _transformGame = (game) => {
-  return {
-    gameName: game.name,
-    background: game.background_image,
-    id: game.id,
-    metacritic: game.metacritic,
-    description: game.description,
-    released: game.released,
-    website: game.website,
-    platforms: game.platforms,
-    genres: game.genres,
-    developers: game.developers,
-    publishers: game.publishers,
-  };
-};
 
 export const apiSlice = createApi({
   keepUnusedDataFor: 30 * 60,
@@ -29,7 +15,7 @@ export const apiSlice = createApi({
         `/games?key=${_apiKey}&page=${page}&page_size=${pageSize}`,
       transformResponse: (response) => {
         return {
-          games: response.results.map((item) => _transformGame(item)),
+          games: response.results.map((item) => transformGame(item)),
           count: response.count,
         };
       },
@@ -49,7 +35,7 @@ export const apiSlice = createApi({
     getGamesBySearch: builder.query({
       query: (gameName) => `/games?key=${_apiKey}&search=${gameName}`,
       transformResponse: (response) => {
-        return response.results.map((item) => _transformGame(item));
+        return response.results.map((item) => transformGame(item));
       },
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
@@ -59,7 +45,7 @@ export const apiSlice = createApi({
       query: (id) => `/games/${id}?key=${_apiKey}`,
       transformResponse: (response) => {
         console.log(response);
-        return _transformGame(response);
+        return transformGame(response);
       },
     }),
     getGameScreenshots: builder.query({
@@ -69,6 +55,10 @@ export const apiSlice = createApi({
         return response.results.map((item) => item.image);
       },
     }),
+
+    getGenres: builder.query({
+      query: () => `/genres?key=${_apiKey}&page_size=30&page=1`,
+    }),
   }),
 });
 
@@ -77,4 +67,5 @@ export const {
   useGetGamesBySearchQuery,
   useGetGameQuery,
   useGetGameScreenshotsQuery,
+  useGetGenresQuery,
 } = apiSlice;

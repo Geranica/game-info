@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectPage, nextPage } from "../SearchSection/gamesSlice";
+import { selectPage, nextPage } from "../../Slices/gamesSlice";
 import { useGetGamesQuery } from "../../api/apiSlice";
 import useInfiniteScroll from "../../hooks/infiniteScroll";
 

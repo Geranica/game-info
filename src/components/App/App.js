@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "../Header/Header";
-import { GamePage } from "../pages";
-
-import SearchSection from "../SearchSection/SearchSection";
+import { MainPage, GamePage } from "../pages";
 
 import "./App.scss";
 
@@ -14,7 +12,7 @@ const App = () => {
         <Header />
         <main className="page">
           <Routes>
-            <Route path="/" element={<SearchSection />} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/game/:gameId/*" element={<GamePage />} />
           </Routes>
         </main>

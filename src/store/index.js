@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
-import games from "../components/SearchSection/gamesSlice";
+import games from "../Slices/gamesSlice";
 
 const stringMiddleware = (store) => (next) => (action) => {
   if (typeof action === "string") {
