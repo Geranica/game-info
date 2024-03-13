@@ -1,19 +1,23 @@
 .select-genre-panel {
-   background-color: #6465c7;
-   padding: 20px;
-   border-radius: 25px;
-
-   grid-area: 1 / 1 / 3 / 2;
+  background-color: #6465c7;
+  padding: 20px;
+  border-radius: 25px;
+  grid-area: sidebar;
 
   // .select-genre-panel__item
 
   &__item {
-
-   button {
-      background: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0px 10px;
+    label {
       color: white;
       font-size: 20px;
-   }
+    }
+    input {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   // .select-genre-panel__container
@@ -24,8 +28,8 @@
   // .select-genre-panel__list
 
   &__list {
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

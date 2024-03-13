@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformGame } from "./transormResponse";
+import isEqual from "lodash/isEqual";
 
 const _apiKey = "53b00c09574c4413b53b51095b44e4cd";
 
@@ -10,7 +11,7 @@ export const apiSlice = createApi({
     baseUrl: "https://api.rawg.io/api",
   }),
   endpoints: (builder) => ({
-    getGames: builder.query({
+    /*  getGames: builder.query({
       query: (page, pageSize = 12) =>
         `/games?key=${_apiKey}&page=${page}&page_size=${pageSize}`,
       transformResponse: (response) => {
@@ -31,7 +32,7 @@ export const apiSlice = createApi({
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
-    }),
+    }), */
     getGamesBySearch: builder.query({
       query: (gameName) => `/games?key=${_apiKey}&search=${gameName}`,
       transformResponse: (response) => {
@@ -44,7 +45,6 @@ export const apiSlice = createApi({
     getGame: builder.query({
       query: (id) => `/games/${id}?key=${_apiKey}`,
       transformResponse: (response) => {
-        console.log(response);
         return transformGame(response);
       },
     }),
@@ -56,8 +56,34 @@ export const apiSlice = createApi({
       },
     }),
 
-    getGenres: builder.query({
-      query: () => `/genres?key=${_apiKey}&page_size=30&page=1`,
+    getGames: builder.query({
+      query: ({ genre, page }) => {
+        return `/games?key=${_apiKey}&page_size=30&page=${page}${genre}`;
+      },
+      serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        return endpointName;
+        //return `${queryArgs.genre}_${queryArgs.page}`;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        //return !isEqual(currentArg, previousArg);
+        console.log(currentArg);
+        return (
+          currentArg.genre !== previousArg?.genre ||
+          currentArg.page !== previousArg?.page
+        );
+      },
+      merge: (currentCache, newItems, { arg }) => {
+        return {
+          games: [...currentCache.games, ...newItems.games],
+          count: newItems.count,
+        };
+      },
+      transformResponse: (response, queryApi, extraOptions) => {
+        return {
+          games: response.results.map((item) => transformGame(item)),
+          count: response.count,
+        };
+      },
     }),
   }),
 });
@@ -67,5 +93,4 @@ export const {
   useGetGamesBySearchQuery,
   useGetGameQuery,
   useGetGameScreenshotsQuery,
-  useGetGenresQuery,
 } = apiSlice;

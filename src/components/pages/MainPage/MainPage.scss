@@ -7,14 +7,17 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto 1fr;
-    //grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "sidebar filters-search"
+      "sidebar games-list"
+      ". games-list";
     gap: 10px;
   }
   // .main-page__subfilters-and-search
 
   &__subfilters-and-search {
     background-color: #6465c7;
-    grid-area: 1 / 2 / 2 / 3;
+    grid-area: filters-search;
     display: flex;
     justify-content: space-between;
     padding-top: 20px;

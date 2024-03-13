@@ -1,5 +1,4 @@
 import AboutGameSkeleton from "../Skeletons/AboutGameSkeleton/AboutGameSkeleton";
-import { useGetGenresQuery } from "../../api/apiSlice";
 
 import "./AboutGame.scss";
 import DOMPurify from "dompurify";
@@ -25,10 +24,6 @@ const AboutGame = ({
   isSuccess,
   website,
 }) => {
-  const x = useGetGenresQuery();
-  console.log(x)
-
-  
   const date = formatDateFromString(released);
   const developersElements = developers.map((item, index) => {
     return <div key={index}>{item.name}</div>;

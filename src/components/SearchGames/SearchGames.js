@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { useGetGamesBySearchQuery } from "../../api/apiSlice";
-import { selectDesiredGame } from "../../Slices/gamesSlice";
+import { selectDesiredGame } from "../../slices/gamesSlice";
 
 import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeletonArray";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";

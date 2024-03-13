@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import { searchGame } from "../../Slices/gamesSlice";
+import { searchGame } from "../../slices/gamesSlice";
 import { useDispatch } from "react-redux";
 
 import "./SearchPanel.scss";

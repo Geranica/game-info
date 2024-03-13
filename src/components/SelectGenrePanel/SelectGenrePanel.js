@@ -1,10 +1,28 @@
-import { buttonsData } from "./buttons";
-import './SelectGenrePanel.scss'
+import { checkboxData } from "./checkboxData";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedGenre, selectGenre } from "../../slices/gamesSlice";
+import "./SelectGenrePanel.scss";
+
 const SelectGenrePanel = () => {
-  const buttonsElement = buttonsData.map((item) => {
+  const dispatch = useDispatch();
+  const selectedGenre = useSelector(selectSelectedGenre);
+
+  const handleRadio = (e) => {
+    dispatch(selectGenre(e.target.value));
+  };
+
+  const buttonsElement = checkboxData.map((item) => {
     return (
-      <li className="select-genre-panel__item" key={item.slug}>
-        <button>{item.label}</button>
+      <li className="select-genre-panel__item" key={item.label}>
+        <input
+          id={item.parameter}
+          value={item.parameter}
+          name="select-genre-panel"
+          type="radio"
+          checked={item.parameter === selectedGenre}
+          onChange={handleRadio}
+        />
+        <label htmlFor="">{item.label}</label>
       </li>
     );
   });
@@ -17,6 +35,5 @@ const SelectGenrePanel = () => {
     </div>
   );
 };
-
 
 export default SelectGenrePanel;

@@ -2,7 +2,7 @@ import AllGames from "../AllGames/AllGames";
 import SearchGames from "../SearchGames/SearchGames";
 
 import { useSelector } from "react-redux";
-import { selectDesiredGame } from "../../Slices/gamesSlice";
+import { selectDesiredGame } from "../../slices/gamesSlice";
 
 import "./SearchSection.scss";
 

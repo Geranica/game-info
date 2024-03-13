@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { selectPage, nextPage } from "../../Slices/gamesSlice";
+import {
+  selectPage,
+  nextPage,
+  selectSelectedGenre,
+} from "../../slices/gamesSlice";
 import { useGetGamesQuery } from "../../api/apiSlice";
 import useInfiniteScroll from "../../hooks/infiniteScroll";
 
@@ -9,9 +13,15 @@ import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeleto
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-import './AllGames.scss';
+import "./AllGames.scss";
 
-const setContent = ({ isLoading, isSuccess, elements, isFetching, isError }) => {
+const setContent = ({
+  isLoading,
+  isSuccess,
+  elements,
+  isFetching,
+  isError,
+}) => {
   if (isLoading) {
     return <GameCardSkeletonArray skeletonCounts={12} />;
   } else if (isFetching) {
@@ -30,12 +40,12 @@ const setContent = ({ isLoading, isSuccess, elements, isFetching, isError }) => 
 
 const AllGames = () => {
   const dispatch = useDispatch();
-  const currentPage = useSelector(selectPage);
-  const allGamesContent = useGetGamesQuery(currentPage);
+  const page = useSelector(selectPage);
+  const genre = useSelector(selectSelectedGenre);
+  const allGamesContent = useGetGamesQuery({ genre, page });
   const increasePage = () => {
     dispatch(nextPage());
   };
-  console.log(allGamesContent)
   const { targetElement } = useInfiniteScroll(increasePage);
   const allGamesElements = allGamesContent.data?.games.map((item, index) => {
     return (
@@ -60,6 +70,5 @@ const AllGames = () => {
 
   return setContent(content);
 };
-
 
 export default AllGames;
