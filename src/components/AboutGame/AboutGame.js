@@ -76,7 +76,9 @@ const AboutGame = ({
           <div className="parent">
             <div className="parent__child-1">Official website:</div>
             <div className="parent__child-2">
-              <a href={website}>Visit the website</a>
+              <a rel="noopener" target="_blank" href={website}>
+                Visit the website
+              </a>
             </div>
           </div>
         </div>

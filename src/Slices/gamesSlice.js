@@ -13,6 +13,9 @@ const gamesSlise = createSlice({
     nextPage: (state) => {
       state.page += 1;
     },
+    resetPage: (state) => {
+      state.page = 1;
+    },
     searchGame: (state, action) => {
       state.desiredGame = action.payload;
     },
@@ -25,7 +28,7 @@ const gamesSlise = createSlice({
 const { actions, reducer } = gamesSlise;
 
 export default reducer;
-export const { nextPage, searchGame, selectGenre } = actions;
+export const { nextPage, searchGame, selectGenre, resetPage } = actions;
 
 //selectors
 export const selectPage = (state) => state.games.page;

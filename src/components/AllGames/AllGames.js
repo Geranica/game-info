@@ -43,6 +43,7 @@ const AllGames = () => {
   const page = useSelector(selectPage);
   const genre = useSelector(selectSelectedGenre);
   const allGamesContent = useGetGamesQuery({ genre, page });
+  console.log(allGamesContent)
   const increasePage = () => {
     dispatch(nextPage());
   };

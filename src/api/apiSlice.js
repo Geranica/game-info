@@ -10,6 +10,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.rawg.io/api",
   }),
+  tagTypes: ["FilteredGames"],
   endpoints: (builder) => ({
     /*  getGames: builder.query({
       query: (page, pageSize = 12) =>
@@ -58,21 +59,24 @@ export const apiSlice = createApi({
 
     getGames: builder.query({
       query: ({ genre, page }) => {
-        return `/games?key=${_apiKey}&page_size=30&page=${page}${genre}`;
+        return `/games?key=${_apiKey}&ordering=-rating&page_size=18&page=${page}${genre}`;
       },
       serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        //return queryArgs.genre;
         return endpointName;
         //return `${queryArgs.genre}_${queryArgs.page}`;
       },
       forceRefetch({ currentArg, previousArg }) {
         //return !isEqual(currentArg, previousArg);
-        console.log(currentArg);
         return (
           currentArg.genre !== previousArg?.genre ||
           currentArg.page !== previousArg?.page
         );
       },
       merge: (currentCache, newItems, { arg }) => {
+        if (arg.page === 1) {
+          return newItems;
+        }
         return {
           games: [...currentCache.games, ...newItems.games],
           count: newItems.count,
@@ -84,10 +88,12 @@ export const apiSlice = createApi({
           count: response.count,
         };
       },
+      invalidatesTags: ["FilteredGames"],
     }),
   }),
 });
 
+console.log(apiSlice);
 export const {
   useGetGamesQuery,
   useGetGamesBySearchQuery,

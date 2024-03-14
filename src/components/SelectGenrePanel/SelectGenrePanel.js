@@ -1,16 +1,21 @@
+import { apiSlice } from "../../api/apiSlice";
 import { checkboxData } from "./checkboxData";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSelectedGenre, selectGenre } from "../../slices/gamesSlice";
+import {
+  selectSelectedGenre,
+  selectGenre,
+  resetPage,
+} from "../../slices/gamesSlice";
 import "./SelectGenrePanel.scss";
 
 const SelectGenrePanel = () => {
   const dispatch = useDispatch();
   const selectedGenre = useSelector(selectSelectedGenre);
-
   const handleRadio = (e) => {
+    dispatch(apiSlice.util.invalidateTags(["FilteredGames"]));
     dispatch(selectGenre(e.target.value));
+    dispatch(resetPage());
   };
-
   const buttonsElement = checkboxData.map((item) => {
     return (
       <li className="select-genre-panel__item" key={item.label}>
