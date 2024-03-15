@@ -1,0 +1,11 @@
+.filters-button {
+  display: none;
+  height: 30px;
+  width: 30px;
+  fill: white;
+  cursor: pointer;
+
+  @media (max-width: 737px) {
+    display: block;
+  }
+}

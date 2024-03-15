@@ -37,12 +37,15 @@ const AboutGame = ({
     .join(", ");
 
   let scoreColor = "about-game__metacritic-score";
-  if (metacritic >= 80) {
-    scoreColor += " about-game__metacritic-score_high";
-  } else if (metacritic >= 60 && metacritic < 80) {
-    scoreColor += " about-game__metacritic-score_middle";
-  } else if (metacritic <= 59) {
-    scoreColor += " about-game__metacritic-score_low";
+
+  if (metacritic !== null) {
+    if (metacritic >= 80) {
+      scoreColor += " about-game__metacritic-score_high";
+    } else if (metacritic >= 60 && metacritic < 80) {
+      scoreColor += " about-game__metacritic-score_middle";
+    } else if (metacritic < 60) {
+      scoreColor += " about-game__metacritic-score_low";
+    }
   }
   const cleanDescription = DOMPurify.sanitize(description);
   const content = (
@@ -76,7 +79,7 @@ const AboutGame = ({
           <div className="parent">
             <div className="parent__child-1">Official website:</div>
             <div className="parent__child-2">
-              <a rel="noopener" target="_blank" href={website}>
+              <a rel="noopener noreferrer" target="_blank" href={website}>
                 Visit the website
               </a>
             </div>
@@ -90,7 +93,7 @@ const AboutGame = ({
     <div className="about-game">
       <div className="about-game__container">
         <div className="about-game__metacritic">
-          <div className={scoreColor}>{metacritic}</div>
+          <div className={scoreColor}>{metacritic ? metacritic : "TBA"}</div>
           <div className="about-game__metacritic-label">Metacritic score</div>
         </div>
         {setContent(isLoading, isSuccess, content)}

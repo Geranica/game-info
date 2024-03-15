@@ -32,7 +32,6 @@ const GamePage = () => {
   const backgroundImageStyle = {
     backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0), #151515), url(${background})`,
   };
-  console.log(game)
   return (
     <section className="game-page" style={backgroundImageStyle}>
       <div className="game-page__container container">

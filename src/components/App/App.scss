@@ -16,7 +16,7 @@
 
 .wrapper {
   min-height: 100vh;
-  overflow: hidden;
+  //overflow: hidden; //выключил, чтобы у дочернего элемента заработал position: sticky
   display: flex; /* для того чтобы прибить footer к низу */
   flex-direction: column;
 }

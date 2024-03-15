@@ -93,7 +93,6 @@ export const apiSlice = createApi({
   }),
 });
 
-console.log(apiSlice);
 export const {
   useGetGamesQuery,
   useGetGamesBySearchQuery,

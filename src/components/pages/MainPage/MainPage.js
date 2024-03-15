@@ -2,10 +2,14 @@ import SelectGenrePanel from "../../SelectGenrePanel/SelectGenrePanel";
 import SearchSection from "../../SearchSection/SearchSection";
 import SearchPanel from "../../SearchPanel/SearchPanel";
 
+import FiltersButton from "../../FiltersButton/FiltersButton";
 
 import "./MainPage.scss";
 
 const MainPage = () => {
+
+
+
   return (
     <section className="main-page">
       <div className="main-page__container container">
@@ -19,9 +23,10 @@ const MainPage = () => {
               <button>New games</button>
             </li>
           </ul>
-          <SearchPanel/>
+          <SearchPanel />
+          <FiltersButton />
         </div>
-        <SearchSection/>
+        <SearchSection />
       </div>
     </section>
   );
