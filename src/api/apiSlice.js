@@ -12,28 +12,6 @@ export const apiSlice = createApi({
   }),
   tagTypes: ["FilteredGames"],
   endpoints: (builder) => ({
-    /*  getGames: builder.query({
-      query: (page, pageSize = 12) =>
-        `/games?key=${_apiKey}&page=${page}&page_size=${pageSize}`,
-      transformResponse: (response) => {
-        return {
-          games: response.results.map((item) => transformGame(item)),
-          count: response.count,
-        };
-      },
-      serializeQueryArgs: ({ endpointName }) => {
-        return endpointName;
-      },
-      merge: (currentCache, newItems) => {
-        return {
-          games: [...currentCache.games, ...newItems.games],
-          count: newItems.count,
-        };
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      },
-    }), */
     getGamesBySearch: builder.query({
       query: (gameName) => `/games?key=${_apiKey}&search=${gameName}`,
       transformResponse: (response) => {

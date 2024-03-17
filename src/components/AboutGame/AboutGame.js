@@ -1,16 +1,10 @@
 import AboutGameSkeleton from "../Skeletons/AboutGameSkeleton/AboutGameSkeleton";
 
-import "./AboutGame.scss";
+import { setContent } from "../../utils/setContent";
 import DOMPurify from "dompurify";
 import { formatDateFromString } from "../../utils/formatDateFromString";
 
-const setContent = (isLoading, isSuccess, elements) => {
-  if (isLoading) {
-    return <AboutGameSkeleton />;
-  } else if (isSuccess) {
-    return elements;
-  }
-};
+import "./AboutGame.scss";
 
 const AboutGame = ({
   description,
@@ -88,7 +82,12 @@ const AboutGame = ({
       </div>
     </>
   );
-
+  const contentObject = {
+    isLoading,
+    isSuccess,
+    isSuccessContent: content,
+    isLoadingContent: <AboutGameSkeleton />,
+  };
   return (
     <div className="about-game">
       <div className="about-game__container">
@@ -96,7 +95,7 @@ const AboutGame = ({
           <div className={scoreColor}>{metacritic ? metacritic : "TBA"}</div>
           <div className="about-game__metacritic-label">Metacritic score</div>
         </div>
-        {setContent(isLoading, isSuccess, content)}
+        {setContent(contentObject)}
       </div>
     </div>
   );

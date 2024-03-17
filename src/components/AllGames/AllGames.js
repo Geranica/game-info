@@ -7,7 +7,7 @@ import {
 } from "../../slices/gamesSlice";
 import { useGetGamesQuery } from "../../api/apiSlice";
 import useInfiniteScroll from "../../hooks/infiniteScroll";
-
+import { setContent } from "../../utils/setContent";
 import GameCard from "../GameCard/GameCard";
 import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeletonArray";
 import Spinner from "../Spinner/Spinner";
@@ -15,7 +15,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import "./AllGames.scss";
 
-const setContent = ({
+/* const setContent = ({
   isLoading,
   isSuccess,
   elements,
@@ -36,7 +36,7 @@ const setContent = ({
   } else if (isError) {
     return <ErrorMessage />;
   }
-};
+}; */
 
 const AllGames = () => {
   const dispatch = useDispatch();
@@ -47,27 +47,40 @@ const AllGames = () => {
     dispatch(nextPage());
   };
   const { targetElement } = useInfiniteScroll(increasePage);
-  const allGamesElements = allGamesContent.data?.games.map((item, index) => {
-    return (
-      <GameCard
-        ref={
-          index === allGamesContent.data.games.length - 1 ? targetElement : null
-        }
-        key={item.id}
-        name={item.gameName}
-        image={item.background}
-        id={item.id}
-      />
-    );
-  });
+  const allGamesElements = (
+    <ul className="games-list">
+      {allGamesContent.data?.games.map((item, index) => {
+        return (
+          <GameCard
+            ref={
+              index === allGamesContent.data.games.length - 1
+                ? targetElement
+                : null
+            }
+            key={item.id}
+            name={item.gameName}
+            image={item.background}
+            id={item.id}
+          />
+        );
+      })}
+    </ul>
+  );
   const content = {
-    elements: allGamesElements,
     isLoading: allGamesContent.isLoading,
     isSuccess: allGamesContent.isSuccess,
     isFetching: allGamesContent.isFetching,
     isError: allGamesContent.isError,
+    isFetchingContent: (
+      <>
+        {allGamesElements}
+        <Spinner />
+      </>
+    ),
+    isErrorContent: <ErrorMessage />,
+    isLoadingContent: <GameCardSkeletonArray skeletonCounts={12} />,
+    isSuccessContent: allGamesElements,
   };
-
   return setContent(content);
 };
 
