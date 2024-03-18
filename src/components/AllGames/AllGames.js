@@ -8,35 +8,13 @@ import {
 import { useGetGamesQuery } from "../../api/apiSlice";
 import useInfiniteScroll from "../../hooks/infiniteScroll";
 import { setContent } from "../../utils/setContent";
+
 import GameCard from "../GameCard/GameCard";
 import GameCardSkeletonArray from "../Skeletons/GameCardSkeleton/GameCardSkeletonArray";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import "./AllGames.scss";
-
-/* const setContent = ({
-  isLoading,
-  isSuccess,
-  elements,
-  isFetching,
-  isError,
-}) => {
-  if (isLoading) {
-    return <GameCardSkeletonArray skeletonCounts={12} />;
-  } else if (isFetching) {
-    return (
-      <>
-        <ul className="games-list">{elements}</ul>
-        <Spinner />
-      </>
-    );
-  } else if (isSuccess) {
-    return <ul className="games-list">{elements}</ul>;
-  } else if (isError) {
-    return <ErrorMessage />;
-  }
-}; */
 
 const AllGames = () => {
   const dispatch = useDispatch();
