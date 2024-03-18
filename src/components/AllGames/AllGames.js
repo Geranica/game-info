@@ -23,6 +23,7 @@ const AllGames = () => {
   const genre = useSelector(selectSelectedGenre);
   const gameTrendsFilter = useSelector(selectSelectedGameTrendsFilter);
   const allGamesContent = useGetGamesQuery({ genre, page, gameTrendsFilter });
+  console.log(allGamesContent)
   const increasePage = () => {
     dispatch(nextPage());
   };
