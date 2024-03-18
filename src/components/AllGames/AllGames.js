@@ -4,6 +4,7 @@ import {
   selectPage,
   nextPage,
   selectSelectedGenre,
+  selectSelectedGameTrendsFilter,
 } from "../../slices/gamesSlice";
 import { useGetGamesQuery } from "../../api/apiSlice";
 import useInfiniteScroll from "../../hooks/infiniteScroll";
@@ -20,7 +21,8 @@ const AllGames = () => {
   const dispatch = useDispatch();
   const page = useSelector(selectPage);
   const genre = useSelector(selectSelectedGenre);
-  const allGamesContent = useGetGamesQuery({ genre, page });
+  const gameTrendsFilter = useSelector(selectSelectedGameTrendsFilter);
+  const allGamesContent = useGetGamesQuery({ genre, page, gameTrendsFilter });
   const increasePage = () => {
     dispatch(nextPage());
   };

@@ -5,6 +5,7 @@ const initialState = {
   desiredGame: "",
   selectedGenre: "",
   filtersButton: false,
+  selectedGameTrendsFilter: "-rating",
 };
 
 const gamesSlise = createSlice({
@@ -26,6 +27,9 @@ const gamesSlise = createSlice({
     toggleFiltersButton: (state) => {
       state.filtersButton = !state.filtersButton;
     },
+    selectGameTrendsFilter: (state, action) => {
+      state.selectedGameTrendsFilter = action.payload;
+    },
   },
 });
 
@@ -38,6 +42,7 @@ export const {
   selectGenre,
   resetPage,
   toggleFiltersButton,
+  selectGameTrendsFilter,
 } = actions;
 
 //selectors
@@ -45,3 +50,5 @@ export const selectPage = (state) => state.games.page;
 export const selectDesiredGame = (state) => state.games.desiredGame;
 export const selectSelectedGenre = (state) => state.games.selectedGenre;
 export const selectFiltersButton = (state) => state.games.filtersButton;
+export const selectSelectedGameTrendsFilter = (state) =>
+  state.games.selectedGameTrendsFilter;

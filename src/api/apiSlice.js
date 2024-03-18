@@ -36,8 +36,8 @@ export const apiSlice = createApi({
     }),
 
     getGames: builder.query({
-      query: ({ genre, page }) => {
-        return `/games?key=${_apiKey}&ordering=-rating&page_size=18&page=${page}${genre}`;
+      query: ({ genre, page, gameTrendsFilter }) => {
+        return `/games?key=${_apiKey}&ordering=${gameTrendsFilter}&page_size=18&page=${page}${genre}`;
       },
       serializeQueryArgs: ({ queryArgs, endpointName }) => {
         //return queryArgs.genre;
@@ -48,7 +48,8 @@ export const apiSlice = createApi({
         //return !isEqual(currentArg, previousArg);
         return (
           currentArg.genre !== previousArg?.genre ||
-          currentArg.page !== previousArg?.page
+          currentArg.page !== previousArg?.page ||
+          currentArg.gameTrendsFilter !== previousArg?.gameTrendsFilter
         );
       },
       merge: (currentCache, newItems, { arg }) => {

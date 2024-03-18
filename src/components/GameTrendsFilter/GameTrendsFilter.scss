@@ -1,0 +1,19 @@
+.game-trends-filter {
+  // .game-trends-filter__list
+
+  &__list {
+    display: flex;
+    gap: 0px 10px;
+  }
+
+  // .game-trends-filter__item
+
+  &__item {
+    font-size: 20px;
+    cursor: pointer;
+
+    &_active {
+      color: aqua;
+    }
+  }
+}
