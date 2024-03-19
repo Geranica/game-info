@@ -51,8 +51,8 @@ const SelectGenrePanel = () => {
   }
 
   const toggleFiltersWindow = filtersButton
-    ? "select-genre-panel select-genre-panel__positioned select-genre-panel_show"
-    : "select-genre-panel select-genre-panel__positioned";
+    ? "select-genre-panel select-genre-panel_positioned select-genre-panel_show"
+    : "select-genre-panel select-genre-panel_positioned";
 
   return (
     <div

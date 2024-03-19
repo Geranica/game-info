@@ -4,7 +4,7 @@
   border-radius: 25px;
   grid-area: sidebar;
 
-  &__positioned {
+  &_positioned {
     @media (max-width: 737px) {
       position: fixed;
       top: 0;
