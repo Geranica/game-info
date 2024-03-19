@@ -7,8 +7,11 @@ export const setContent = ({
   isFetchingContent,
   isSuccessContent,
   isErrorContent,
+  page,
 }) => {
   if (isLoading) {
+    return isLoadingContent;
+  } else if (isFetching && page === 1) {
     return isLoadingContent;
   } else if (isFetching) {
     return isFetchingContent;

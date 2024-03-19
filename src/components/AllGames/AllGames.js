@@ -23,7 +23,7 @@ const AllGames = () => {
   const genre = useSelector(selectSelectedGenre);
   const gameTrendsFilter = useSelector(selectSelectedGameTrendsFilter);
   const allGamesContent = useGetGamesQuery({ genre, page, gameTrendsFilter });
-  console.log(allGamesContent)
+  console.log(allGamesContent);
   const increasePage = () => {
     dispatch(nextPage());
   };
@@ -59,8 +59,9 @@ const AllGames = () => {
       </>
     ),
     isErrorContent: <ErrorMessage />,
-    isLoadingContent: <GameCardSkeletonArray skeletonCounts={12} />,
+    isLoadingContent: <GameCardSkeletonArray skeletonCounts={18} />,
     isSuccessContent: allGamesElements,
+    page,
   };
   return setContent(content);
 };

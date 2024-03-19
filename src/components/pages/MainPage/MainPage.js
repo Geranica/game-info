@@ -14,14 +14,6 @@ const MainPage = () => {
         <SelectGenrePanel />
         <div className="main-page__subfilters-and-search">
           <GameTrendsFilter />
-          {/* <ul className="main-page__subfilters-list">
-            <li className="main-page__subfilters-item">
-              <button>Popular games</button>
-            </li>
-            <li className="main-page__subfilters-item">
-              <button>New games</button>
-            </li>
-          </ul> */}
           <SearchPanel />
           <FiltersButton />
         </div>
