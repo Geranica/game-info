@@ -21,6 +21,9 @@ const gamesSlise = createSlice({
     searchGame: (state, action) => {
       state.desiredGame = action.payload;
     },
+    resetDesiredGame: (state) => {
+      state.desiredGame = "";
+    },
     selectGenre: (state, action) => {
       state.selectedGenre = action.payload;
     },
@@ -43,6 +46,7 @@ export const {
   resetPage,
   toggleFiltersButton,
   selectGameTrendsFilter,
+  resetDesiredGame,
 } = actions;
 
 //selectors
