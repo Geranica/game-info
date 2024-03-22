@@ -7,6 +7,7 @@ import SingleGameNavigation from "../../SingleGameNavigation/SingleGameNavigatio
 import {
   useGetGameQuery,
   useGetGameScreenshotsQuery,
+  useGetGameAdditionsQuery,
 } from "../../../api/apiSlice";
 
 import "./GamePage.scss";
@@ -15,6 +16,9 @@ const GamePage = () => {
   const { gameId } = useParams();
   const { data: game = [], isSuccess, isLoading } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
+  const { data: x = [] } = useGetGameAdditionsQuery(gameId);
+
+  console.log(x);
 
   const {
     gameName,

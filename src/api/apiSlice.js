@@ -24,6 +24,7 @@ export const apiSlice = createApi({
     getGame: builder.query({
       query: (id) => `/games/${id}?key=${_apiKey}`,
       transformResponse: (response) => {
+        console.log(response);
         return transformGame(response);
       },
     }),
@@ -69,6 +70,13 @@ export const apiSlice = createApi({
       },
       invalidatesTags: ["FilteredGames"],
     }),
+    getGameAdditions: builder.query({
+      query: (id) => `/games/${id}/additions?key=${_apiKey}`,
+      transformResponse: (response) => {
+        console.log(response);
+        return response.results.map((item) => transformGame(item));
+      },
+    }),
   }),
 });
 
@@ -77,4 +85,5 @@ export const {
   useGetGamesBySearchQuery,
   useGetGameQuery,
   useGetGameScreenshotsQuery,
+  useGetGameAdditionsQuery,
 } = apiSlice;
