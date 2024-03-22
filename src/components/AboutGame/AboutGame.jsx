@@ -3,6 +3,7 @@ import AboutGameSkeleton from "../Skeletons/AboutGameSkeleton/AboutGameSkeleton"
 import { setContent } from "../../utils/setContent";
 import DOMPurify from "dompurify";
 import { formatDateFromString } from "../../utils/formatDateFromString";
+import GameAdditions from "../GameAddittions/GameAdditions";
 
 import "./AboutGame.scss";
 
@@ -96,6 +97,7 @@ const AboutGame = ({
           <div className="about-game__metacritic-label">Metacritic score</div>
         </div>
         {setContent(contentObject)}
+        <GameAdditions />
       </div>
     </div>
   );

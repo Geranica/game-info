@@ -1,0 +1,76 @@
+.game-additions {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  // .game-additions__container
+
+  &__container {
+  }
+
+  // .game-additions__titel
+
+  &__titel {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  // .game-additions__block
+
+  &__block {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 65px;
+    row-gap: 50px;
+  }
+
+  // .game-additions__item
+
+  &__item {
+    padding: 25px;
+    background-color: #1d1d37;
+  }
+
+  // .game-additions__item-content
+
+  &__item-content {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+  }
+
+  // .game-additions__image
+
+  &__image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // .game-additions__name
+
+  &__name {
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  // .game-additions__release-date
+
+  &__release-date {
+    font-size: 16px;
+  }
+
+  // .game-additions__no-info
+
+  &__no-info {
+   font-size: 20px;
+   font-weight: 500;
+  }
+}
