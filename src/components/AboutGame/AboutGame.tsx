@@ -1,7 +1,10 @@
+import DOMPurify from "dompurify";
+import { AboutGameProps } from "./AboutGame.interface";
+
 import AboutGameSkeleton from "../Skeletons/AboutGameSkeleton/AboutGameSkeleton";
 
 import { setContent } from "../../utils/setContent";
-import DOMPurify from "dompurify";
+
 import { formatDateFromString } from "../../utils/formatDateFromString";
 import GameAdditions from "../GameAddittions/GameAdditions";
 
@@ -18,7 +21,7 @@ const AboutGame = ({
   isLoading,
   isSuccess,
   website,
-}) => {
+}: AboutGameProps) => {
   const date = formatDateFromString(released);
   const developersElements = developers.map((item, index) => {
     return <div key={index}>{item.name}</div>;

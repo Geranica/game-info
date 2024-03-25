@@ -1,3 +1,17 @@
+import { ReactNode } from "react";
+
+interface ContentProps {
+  isLoading?: boolean;
+  isFetching?: boolean;
+  isSuccess?: boolean;
+  isError?: boolean;
+  isLoadingContent?: ReactNode;
+  isFetchingContent?: ReactNode;
+  isSuccessContent?: ReactNode;
+  isErrorContent?: ReactNode;
+  page?: number;
+}
+
 export const setContent = ({
   isLoading,
   isFetching,
@@ -8,7 +22,7 @@ export const setContent = ({
   isSuccessContent,
   isErrorContent,
   page,
-}) => {
+}: ContentProps): ReactNode => {
   if (isLoading) {
     return isLoadingContent;
   } else if (isFetching && page === 1) {
