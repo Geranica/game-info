@@ -1,5 +1,7 @@
+import { CSSProperties } from "react";
+
 const Spinner = () => {
-  const svgStyles = {
+  const svgStyles: CSSProperties = {
     //margin: "auto",
     display: "block",
     shapeRendering: "auto",
