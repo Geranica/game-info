@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const initialState = {
   page: 1,
@@ -50,9 +51,11 @@ export const {
 } = actions;
 
 //selectors
-export const selectPage = (state) => state.games.page;
-export const selectDesiredGame = (state) => state.games.desiredGame;
-export const selectSelectedGenre = (state) => state.games.selectedGenre;
-export const selectFiltersButton = (state) => state.games.filtersButton;
-export const selectSelectedGameTrendsFilter = (state) =>
+export const selectPage = (state: RootState) => state.games.page;
+export const selectDesiredGame = (state: RootState) => state.games.desiredGame;
+export const selectSelectedGenre = (state: RootState) =>
+  state.games.selectedGenre;
+export const selectFiltersButton = (state: RootState) =>
+  state.games.filtersButton;
+export const selectSelectedGameTrendsFilter = (state: RootState) =>
   state.games.selectedGameTrendsFilter;

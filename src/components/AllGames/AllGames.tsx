@@ -22,21 +22,27 @@ const AllGames = () => {
   const page = useSelector(selectPage);
   const genre = useSelector(selectSelectedGenre);
   const gameTrendsFilter = useSelector(selectSelectedGameTrendsFilter);
-  const allGamesContent = useGetGamesQuery({ genre, page, gameTrendsFilter });
+  const {
+    isLoading,
+    isSuccess,
+    isFetching,
+    isError,
+    data = { games: [] },
+  } = useGetGamesQuery({
+    genre,
+    page,
+    gameTrendsFilter,
+  });
   const increasePage = () => {
     dispatch(nextPage());
   };
   const { targetElement } = useInfiniteScroll(increasePage);
   const allGamesElements = (
     <ul className="games-list">
-      {allGamesContent.data?.games.map((item, index) => {
+      {data.games?.map((item, index) => {
         return (
           <GameCard
-            ref={
-              index === allGamesContent.data.games.length - 1
-                ? targetElement
-                : null
-            }
+            ref={index === data.games?.length - 1 ? targetElement : null}
             key={item.id}
             name={item.gameName}
             image={item.background}
@@ -47,10 +53,10 @@ const AllGames = () => {
     </ul>
   );
   const content = {
-    isLoading: allGamesContent.isLoading,
-    isSuccess: allGamesContent.isSuccess,
-    isFetching: allGamesContent.isFetching,
-    isError: allGamesContent.isError,
+    isLoading,
+    isSuccess,
+    isFetching,
+    isError,
     isFetchingContent: (
       <>
         {allGamesElements}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { searchGame, resetDesiredGame } from "../../slices/gamesSlice";
 import { useDispatch } from "react-redux";
 import debounce from "debounce";
@@ -23,8 +23,8 @@ const SearchPanel = () => {
     };
   }, []);
 
-  const handleOnChange = (e) => {
-    setInputValue(e.target.value);
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target?.value);
     debouncedSearch(dispatch, e.target.value);
   };
 

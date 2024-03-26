@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectGameTrendsFilter,
@@ -11,8 +12,8 @@ const GameTrendsFilter = () => {
   const dispatch = useDispatch();
   const activeFilter = useSelector(selectSelectedGameTrendsFilter);
 
-  const handleClick = (e) => {
-    const targetValue = e.target.dataset.gameTrendsFilter;
+  const handleClick = (e: MouseEvent<HTMLElement>) => {
+    const targetValue = e.currentTarget.dataset.gameTrendsFilter;
     dispatch(resetPage());
     dispatch(selectGameTrendsFilter(targetValue));
   };

@@ -17,7 +17,11 @@ const GameCardSkeleton = () => {
   );
 };
 
-const GameCardSkeletonArray = ({ skeletonCounts }) => {
+const GameCardSkeletonArray = ({
+  skeletonCounts,
+}: {
+  skeletonCounts: number;
+}) => {
   const skeletons = Array.from({ length: skeletonCounts }, (_, index) => (
     <GameCardSkeleton key={index} />
   ));
