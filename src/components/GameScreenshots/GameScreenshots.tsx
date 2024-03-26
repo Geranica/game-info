@@ -1,6 +1,6 @@
 import "./GameScreenshots.scss";
 
-const GameScreenshots = ({ screenshots }) => {
+const GameScreenshots = ({ screenshots }: { screenshots: string[] }) => {
   const screenshotElements = screenshots.map((item, index) => {
     return (
       <div className="game-screenshots__screenshot" key={index}>

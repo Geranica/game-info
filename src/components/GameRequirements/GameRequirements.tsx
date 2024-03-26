@@ -1,5 +1,5 @@
 import "./GameRequirements.scss";
-const GameRequirements = ({ requirements }) => {
+const GameRequirements = ({ requirements }: {requirements: []}) => {
   const requirementsElement = requirements.find(
     (item) => item.platform.name === "PC"
   );
