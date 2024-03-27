@@ -1,6 +1,7 @@
 import SelectGenrePanel from "../../SelectGenrePanel/SelectGenrePanel";
 import SearchSection from "../../SearchSection/SearchSection";
 import SearchPanel from "../../SearchPanel/SearchPanel";
+import ErrorBoundary from "../../ErrorBoundary/ErrorBoundary";
 
 import FiltersButton from "../../FiltersButton/FiltersButton";
 import GameTrendsFilter from "../../GameTrendsFilter/GameTrendsFilter";
@@ -11,13 +12,23 @@ const MainPage = () => {
   return (
     <section className="main-page">
       <div className="main-page__container container">
-        <SelectGenrePanel />
+        <ErrorBoundary>
+          <SelectGenrePanel />
+        </ErrorBoundary>
         <div className="main-page__subfilters-and-search">
-          <GameTrendsFilter />
-          <SearchPanel />
-          <FiltersButton />
+          <ErrorBoundary>
+            <GameTrendsFilter />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <SearchPanel />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <FiltersButton />
+          </ErrorBoundary>
         </div>
-        <SearchSection />
+        <ErrorBoundary>
+          <SearchSection />
+        </ErrorBoundary>
       </div>
     </section>
   );
