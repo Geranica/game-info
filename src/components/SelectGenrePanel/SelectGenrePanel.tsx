@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { apiSlice } from "../../api/apiSlice";
 import { checkboxData } from "./checkboxData";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,13 +12,15 @@ import {
 
 import sprite from "../../icons/sprite.svg";
 import "./SelectGenrePanel.scss";
+import { ChangeEvent } from "react";
 
 const SelectGenrePanel = () => {
   const dispatch = useDispatch();
 
   const selectedGenre = useSelector(selectSelectedGenre);
   const filtersButton = useSelector(selectFiltersButton);
-  const handleRadio = (e) => {
+
+  const handleRadio = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(apiSlice.util.invalidateTags(["FilteredGames"]));
     dispatch(selectGenre(e.target.value));
     dispatch(resetPage());
@@ -38,8 +41,10 @@ const SelectGenrePanel = () => {
       </li>
     );
   });
-  const handleParentClick = (event) => {
-    if (event.target.hasAttribute("data-filters")) {
+
+  const handleParentClick = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.hasAttribute("data-filters") && filtersButton) {
       dispatch(toggleFiltersButton());
     }
   };

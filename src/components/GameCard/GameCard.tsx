@@ -1,11 +1,17 @@
-import { forwardRef } from "react";
+import { forwardRef, Ref } from "react";
 import { Link } from "react-router-dom";
 
 import sprite from "../../icons/sprite.svg";
 import "./GameCard.scss";
 
-const GameCard = forwardRef(
-  ({ name, image, id }: { name: string; image: string; id: number }, ref) => {
+interface GameCardProps {
+  name: string;
+  image: string;
+  id: number;
+}
+
+const GameCard = forwardRef<HTMLLIElement, GameCardProps>(
+  ({ name, image, id }, ref: Ref<HTMLLIElement>) => {
     const imgElement = image ? (
       <div className="game-card__img">
         <img src={image} alt="" />

@@ -1,5 +1,20 @@
 import "./GameRequirements.scss";
-const GameRequirements = ({ requirements }: {requirements: []}) => {
+
+interface Requirement {
+  platform: {
+    name: string;
+  };
+  requirements: {
+    minimum?: string;
+    recommended?: string;
+  };
+}
+
+interface RequirementsProps {
+  requirements: Requirement[];
+}
+
+const GameRequirements = ({ requirements }: RequirementsProps) => {
   const requirementsElement = requirements.find(
     (item) => item.platform.name === "PC"
   );

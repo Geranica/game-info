@@ -24,7 +24,7 @@ const SearchPanel = () => {
   }, []);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target?.value);
+    setInputValue(e.target.value);
     debouncedSearch(dispatch, e.target.value);
   };
 

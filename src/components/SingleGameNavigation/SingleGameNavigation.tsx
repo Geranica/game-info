@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import "./SingleGameNavigation.scss";
 
-const SingleGameNavigation = ({ gameId }) => {
+const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
   const { "*": activeLink } = useParams();
   const linksContent = [
     { label: "About game", path: "about-game" },
