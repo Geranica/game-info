@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
+
 import GameScreenshots from "../../GameScreenshots/GameScreenshots";
 import AboutGame from "../../AboutGame/AboutGame";
 import GameRequirements from "../../GameRequirements/GameRequirements";
 import SingleGameNavigation from "../../SingleGameNavigation/SingleGameNavigation";
+import GameAchievements from "../../GameAchievements/GameAchievements";
+
 import {
   useGetGameQuery,
   useGetGameScreenshotsQuery,
@@ -68,6 +71,7 @@ const GamePage = () => {
             path="screenshots"
             element={<GameScreenshots screenshots={screenshots} />}
           />
+          <Route path="achievements" element={<GameAchievements />} />
         </Routes>
       </div>
     </section>

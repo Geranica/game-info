@@ -7,8 +7,8 @@ const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
     { label: "About game", path: "about-game" },
     { label: "Requirements", path: "requirements" },
     { label: "Screenshots", path: "screenshots" },
+    { label: "Achievements", path: "achievements" },
   ];
-
   const elements = linksContent.map((item) => {
     const classNameLi =
       item.path === activeLink

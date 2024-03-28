@@ -1,0 +1,83 @@
+.game-achievements {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1150px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  // .game-achievements__container
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // .game-achievements__list
+
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px 0px;
+  }
+
+  // .game-achievements__item
+
+  &__item {
+    display: flex;
+    gap: 15px;
+  }
+
+  // .game-achievements__image
+
+  &__image {
+    width: 67px;
+    height: 67px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  // .game-achievements__name-description-percent
+
+  &__name-description-percent {
+    padding: 15px;
+    display: flex;
+    flex: 1;
+    gap: 0px 10px;
+  }
+
+  // .game-achievements__name-description
+
+  &__name-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 7px 0px;
+    flex: 1;
+  }
+
+  // .game-achievements__name
+
+  &__name {
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  // .game-achievements__description
+
+  &__description {
+    font-size: 13px;
+  }
+
+  // .game-achievements__percent
+
+  &__percent {
+    display: flex;
+    align-items: flex-end;
+    font-weight: 700;
+  }
+}
