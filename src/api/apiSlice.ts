@@ -88,7 +88,7 @@ export const apiSlice = createApi({
       query: (id) => `/games/${id}/achievements?key=${_apiKey}&page_size=200`,
       transformResponse: (response: { results: [] }) => {
         const copyArr = [...response.results];
-        console.log(copyArr)
+        console.log(copyArr);
         return copyArr.sort(
           (a: { percent: string }, b: { percent: string }) =>
             +b.percent - +a.percent
@@ -105,4 +105,5 @@ export const {
   useGetGameScreenshotsQuery,
   useGetGameAdditionsQuery,
   useGetGameAchievementsQuery,
+  useLazyGetGameAchievementsQuery,
 } = apiSlice;

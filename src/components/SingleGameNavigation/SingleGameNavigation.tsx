@@ -1,8 +1,24 @@
 import { Link, useParams } from "react-router-dom";
+import { useRef } from "react";
+
+import { useLazyGetGameAchievementsQuery } from "../../api/apiSlice";
+
 import "./SingleGameNavigation.scss";
 
 const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
+  const [fetchAchievementsData] = useLazyGetGameAchievementsQuery();
+
+  const isFetchCompletedRef = useRef(false);
+
+  const handleMouseEnter = () => {
+    if (!isFetchCompletedRef.current) {
+      fetchAchievementsData(gameId);
+      isFetchCompletedRef.current = true;
+    }
+  };
+
   const { "*": activeLink } = useParams();
+  
   const linksContent = [
     { label: "About game", path: "about-game" },
     { label: "Requirements", path: "requirements" },
@@ -19,7 +35,13 @@ const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
         ? "single-game-navigation__item-link single-game-navigation__item-link_active"
         : "single-game-navigation__item-link";
     return (
-      <li key={item.path} className={classNameLi}>
+      <li
+        onMouseEnter={
+          item.label === "Achievements" ? handleMouseEnter : undefined
+        }
+        key={item.path}
+        className={classNameLi}
+      >
         <Link to={`/game/${gameId}/${item.path}`} className={classNameLink}>
           {item.label}
         </Link>
