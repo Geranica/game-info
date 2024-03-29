@@ -1,3 +1,5 @@
+@import "../../responsive-property.scss";
+
 .about-game {
   // .about-game__container
   padding-top: 20px;
@@ -20,13 +22,13 @@
   // .about-game__description
 
   &__description {
+    @include responsiveProperty(font-size, 18, 15, 1);
     align-self: flex-start;
     color: #d1daf4;
     background-color: rgb(126, 133, 214, 0.8);
     flex: 1 1 50%;
     border-radius: 15px;
     padding: 20px;
-    font-size: 17px;
     font-weight: 400;
     line-height: 1.5;
     p {

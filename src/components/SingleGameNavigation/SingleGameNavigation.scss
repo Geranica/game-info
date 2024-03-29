@@ -1,3 +1,5 @@
+@import "../../responsive-property.scss";
+
 .single-game-navigation {
   padding: 25px 0px 25px 0px;
   height: auto;
@@ -17,10 +19,10 @@
   // .single-game-navigation__list
 
   &__list {
+    @include responsiveProperty(column-gap, 30, 10, 1);
     height: 100%;
     display: flex;
     align-items: center;
-    column-gap: 30px;
     row-gap: 20px;
     @media (max-width: 531px) {
       flex-direction: column;
@@ -67,7 +69,7 @@
   &__item-link {
     color: #6465c7;
     font-size: 15px;
-    @media(max-width:531px) {
+    @media (max-width: 531px) {
       font-size: 17px;
     }
     font-weight: 500;

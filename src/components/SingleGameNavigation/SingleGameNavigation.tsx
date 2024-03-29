@@ -18,7 +18,7 @@ const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
   };
 
   const { "*": activeLink } = useParams();
-  
+
   const linksContent = [
     { label: "About game", path: "about-game" },
     { label: "Requirements", path: "requirements" },

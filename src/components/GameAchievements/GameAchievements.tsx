@@ -25,7 +25,6 @@ const GameAchievements = () => {
     isSuccess: boolean;
   } = useGetGameAchievementsQuery(gameId);
 
-  console.log(achievements);
 
   const achievementsElements = achievements?.map((item, index) => {
     const styleGradient = {

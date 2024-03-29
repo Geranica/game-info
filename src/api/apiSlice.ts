@@ -25,7 +25,6 @@ export const apiSlice = createApi({
     getGame: builder.query({
       query: (id) => `/games/${id}?key=${_apiKey}`,
       transformResponse: (response: Game) => {
-        console.log(response);
         return transformGame(response);
       },
     }),
@@ -33,7 +32,6 @@ export const apiSlice = createApi({
       query: (id) =>
         `/games/${id}/screenshots?key=${_apiKey}&page_size=20&page=1`,
       transformResponse: (response: Screenshots) => {
-        console.log(response);
         return response.results.map((item) => item.image);
       },
     }),
@@ -88,7 +86,6 @@ export const apiSlice = createApi({
       query: (id) => `/games/${id}/achievements?key=${_apiKey}&page_size=200`,
       transformResponse: (response: { results: [] }) => {
         const copyArr = [...response.results];
-        console.log(copyArr);
         return copyArr.sort(
           (a: { percent: string }, b: { percent: string }) =>
             +b.percent - +a.percent

@@ -19,9 +19,6 @@ const GamePage = () => {
   const { gameId } = useParams();
   const { data: game = [], isSuccess, isLoading } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
-  const { data: x = [] } = useGetGameAdditionsQuery(gameId);
-
-  console.log(x);
 
   const {
     gameName,

@@ -1,8 +1,10 @@
+@import "../../../responsive-property.scss";
+
 .game-page {
   background: center/cover no-repeat;
   min-height: 100vh;
   padding-top: 100px;
-  
+
   // .game-page__container
 
   &__container {
@@ -24,11 +26,8 @@
   // .game-page__name
 
   &__name {
-    font-size: 60px;
     font-weight: 700;
-    margin-bottom: 30px;
-    @media(max-width: 547px) {
-      font-size: 45px;
-    }
+    @include responsiveProperty(font-size, 65, 40, 1);
+    @include responsiveProperty(margin-bottom, 30, 20, 1);
   }
 }
