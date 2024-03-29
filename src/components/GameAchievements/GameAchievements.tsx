@@ -25,11 +25,11 @@ const GameAchievements = () => {
     isSuccess: boolean;
   } = useGetGameAchievementsQuery(gameId);
 
-  console.log (achievements)
+  console.log(achievements);
 
   const achievementsElements = achievements?.map((item, index) => {
     const styleGradient = {
-      background: `linear-gradient(to right, green ${item.percent}%, #121221 ${item.percent}%)`,
+      background: `linear-gradient(to right, #6465c7 ${item.percent}%, #3e4071 ${item.percent}%)`,
     };
     return (
       <li key={index} className="game-achievements__item">
@@ -56,14 +56,18 @@ const GameAchievements = () => {
     isLoading,
     isLoadingContent: <Spinner />,
     isSuccess,
-    isSuccessContent: (
-      <ul className="game-achievements__list">{achievementsElements}</ul>
-    ),
+    isSuccessContent:
+      achievements?.length === 0 ? (
+        <div className="game-achievements__no-information">No information</div>
+      ) : (
+        <ul className="game-achievements__list">{achievementsElements}</ul>
+      ),
   };
 
   return (
     <section className="game-achievements">
       <div className="game-achievements__container">
+        <h2 className="game-achievements__title">Achievements</h2>
         {setContent(contentData)}
       </div>
     </section>
