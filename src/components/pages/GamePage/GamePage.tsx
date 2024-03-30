@@ -10,7 +10,6 @@ import GameAchievements from "../../GameAchievements/GameAchievements";
 import {
   useGetGameQuery,
   useGetGameScreenshotsQuery,
-  useGetGameAdditionsQuery,
 } from "../../../api/apiSlice";
 
 import "./GamePage.scss";

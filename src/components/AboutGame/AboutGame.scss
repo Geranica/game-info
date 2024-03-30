@@ -1,8 +1,8 @@
-@import "../../responsive-property.scss";
+@import '../../clamp-builder.scss';
 
 .about-game {
   // .about-game__container
-  padding-top: 20px;
+  padding-top: clampBuilder(15, 20);;
 
   &__container {
     //display: flex;
@@ -13,8 +13,7 @@
 
   &__main-information {
     display: flex;
-    column-gap: 30px;
-    row-gap: 30px;
+    gap: clampBuilder(15, 30);
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -22,19 +21,19 @@
   // .about-game__description
 
   &__description {
-    @include responsiveProperty(font-size, 18, 15, 1);
+    font-size: clampBuilder(15, 17);
     align-self: flex-start;
     color: #d1daf4;
     background-color: rgb(126, 133, 214, 0.8);
     flex: 1 1 50%;
     border-radius: 15px;
-    padding: 20px;
+    padding: clampBuilder(15, 20);
     font-weight: 400;
     line-height: 1.5;
     p {
-      margin-bottom: 10px;
+      margin-bottom: clampBuilder(7, 10);
       br {
-        margin-bottom: 15px;
+        margin-bottom: clampBuilder(7, 15);
         display: block;
         content: "\00a0";
       }
@@ -50,14 +49,14 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    margin-bottom: 15px;
+    margin-bottom: clampBuilder(7, 15);
   }
 
   // .about-game__metacritic-score
 
   &__metacritic-score {
     background-color: #d1daf4;
-    font-size: 25px;
+    font-size: clampBuilder(17, 25);
     text-align: center;
     width: 100px;
     padding: 15px 0px;
@@ -77,7 +76,8 @@
   // .about-game__metacritic-label
 
   &__metacritic-label {
-    font-size: 17px;
+    font-size: clampBuilder(14, 17);
+    font-weight: 700;
   }
 
   // .about-game__summary
@@ -85,7 +85,7 @@
   &__summary {
     flex: 1 1 340px;
     align-self: flex-start;
-    padding: 20px;
+    padding: clampBuilder(15, 20);
     border-radius: 15px;
     font-size: 16px;
     background-color: #7e85d6cc;
@@ -104,25 +104,25 @@
 .parent {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 0px 50px;
+  gap: 0px clamp(15px, 0.223rem + 3.57vw, 50px);
 
   // .parent__child-1
 
   &__child-1 {
+    font-size: clamp(14px, 0.855rem + 0.1vw, 15px);
     color: #d1daf4;
-    font-size: 15px;
   }
 
   // .parent__child-2
 
   &__child-2 {
+    font-size: clamp(15px, 0.897rem + 0.2vw, 17px);
     line-height: 1.2;
-    font-size: 17px;
     color: #ffaf6a;
     font-weight: 500;
     a {
       line-height: 1.2;
-      font-size: 17px;
+      font-size: clamp(15px, 0.897rem + 0.2vw, 17px);
       color: #f69643;
       font-weight: 500;
       text-decoration: underline;

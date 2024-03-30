@@ -1,3 +1,4 @@
+@import "../../clamp-builder.scss";
 .game-card {
   border-radius: 10px;
   background-color: #1d1d37;
@@ -34,8 +35,8 @@
   &__name {
     color: white;
     margin-top: 15px;
-    font-size: 23px;
+    font-size: clampBuilder(18, 23);
     font-weight: 700;
-    padding: 0px 15px 20px 15px;
+    padding: 0px clampBuilder(10, 15) clampBuilder(15, 20) clampBuilder(10, 15);
   }
 }

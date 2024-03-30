@@ -1,5 +1,4 @@
-@import "../../../responsive-property.scss";
-
+@import "../../../clamp-builder.scss";
 .game-page {
   background: center/cover no-repeat;
   min-height: 100vh;
@@ -8,13 +7,6 @@
   // .game-page__container
 
   &__container {
-  }
-
-  // .game-page__content-block
-
-  &__content-block {
-    display: flex;
-    column-gap: 30px;
   }
 
   // .game-page__about-game
@@ -27,7 +19,7 @@
 
   &__name {
     font-weight: 700;
-    @include responsiveProperty(font-size, 65, 40, 1);
-    @include responsiveProperty(margin-bottom, 30, 20, 1);
+    font-size: clampBuilder(36, 65, 320, 1300);
+    margin-bottom: clampBuilder(20, 30, 320, 1300);
   }
 }
