@@ -1,5 +1,7 @@
 import DOMPurify from "dompurify";
 
+import { useState } from "react";
+
 import { AboutGameProps } from "./AboutGame.interface";
 import { setContent } from "../../utils/setContent";
 import { formatDateFromString } from "../../utils/formatDateFromString";
@@ -21,7 +23,10 @@ const AboutGame = ({
   isSuccess,
   website,
 }: AboutGameProps) => {
+  const [showFullDescription, setShowFullDescription] = useState(false);
+
   const date = formatDateFromString(released);
+
   const developersElements = developers.map((item, index) => {
     return <div key={index}>{item.name}</div>;
   });
@@ -44,14 +49,44 @@ const AboutGame = ({
       scoreColor += " about-game__metacritic-score_low";
     }
   }
+
   const cleanDescription = DOMPurify.sanitize(description);
+  const truncatedDescription =
+    cleanDescription.slice(0, 350) +
+    (cleanDescription.length > 350 ? "..." : "");
+  const toggleDescription = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+  const descriptionButton =
+    cleanDescription.length > 350 ? (
+      <button
+        className="about-game__description-button"
+        onClick={toggleDescription}
+      >
+        {showFullDescription ? "Show less" : "Show more"}
+      </button>
+    ) : (
+      ""
+    );
+
   const content = (
     <>
       <div className="about-game__main-information">
-        <div
-          className="about-game__description"
-          dangerouslySetInnerHTML={{ __html: cleanDescription }}
-        ></div>
+        <div className="about-game__description-block">
+          <div
+            className={
+              showFullDescription
+                ? "about-game__description about-game__description_display-block"
+                : "about-game__description"
+            }
+            dangerouslySetInnerHTML={{
+              __html: showFullDescription
+                ? cleanDescription
+                : truncatedDescription,
+            }}
+          ></div>
+          {descriptionButton}
+        </div>
         <div className="about-game__summary">
           <div className="parent">
             <div className="parent__child-1">Release:</div>
