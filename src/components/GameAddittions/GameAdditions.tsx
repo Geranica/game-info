@@ -1,14 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useGetGameAdditionsQuery } from "../../api/apiSlice";
 import { formatDateFromString } from "../../utils/formatDateFromString";
+import { setContent } from "../../utils/setContent";
 
 import sprite from "../../icons/sprite.svg";
+import GameAdditionsSkeletonArray from "../Skeletons/GameAdditionsSkeleton/GameAdditionsSkeleton";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 import "./GameAdditions.scss";
 
 const GameAdditions = () => {
   const { gameId } = useParams();
-  const { data: additions = [] } = useGetGameAdditionsQuery(gameId);
+  const {
+    isLoading,
+    isSuccess,
+    isError,
+    data: additions = [],
+  } = useGetGameAdditionsQuery(gameId);
 
   const items = additions.map((item) => {
     const image = item.background ? (
@@ -31,18 +39,26 @@ const GameAdditions = () => {
       </div>
     );
   });
-
   const content =
     additions.length > 0 ? (
       items
     ) : (
       <div className="game-additions__no-info">No information</div>
     );
+  const contentData = {
+    isLoading,
+    isSuccess,
+    isError,
+    isSuccessContent: content,
+    isLoadingContent: <GameAdditionsSkeletonArray skeletonCounts={3} />,
+    isErrorContent: <ErrorMessage />,
+  };
+
   return (
     <section className="game-additions">
       <div className="game-additions__container">
         <h2 className="game-additions__titel">Additions:</h2>
-        <div className="game-additions__block"> {content}</div>
+        <div className="game-additions__block">{setContent(contentData)}</div>
       </div>
     </section>
   );
