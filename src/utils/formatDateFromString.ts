@@ -1,4 +1,4 @@
-const formatDateFromString = (dateString: string | null) => {
+const formatDateFromString = (dateString: string | null | undefined) => {
   if (typeof dateString === "string") {
     const date = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = {

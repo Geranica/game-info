@@ -5,7 +5,7 @@ import { useLazyGetGameAchievementsQuery } from "../../api/apiSlice";
 
 import "./SingleGameNavigation.scss";
 
-const SingleGameNavigation = ({ gameId }: { gameId: number }) => {
+const SingleGameNavigation = ({ gameId }: { gameId: string | undefined }) => {
   const [fetchAchievementsData] = useLazyGetGameAchievementsQuery();
 
   const isFetchCompletedRef = useRef(false);

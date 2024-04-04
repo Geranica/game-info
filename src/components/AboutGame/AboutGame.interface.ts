@@ -1,7 +1,7 @@
 export interface AboutGameProps {
-  description: string;
-  metacritic: number | null;
-  released: string | null;
+  description: string | undefined;
+  metacritic: number | null | undefined;
+  released: string | null | undefined;
   developers: { name: string }[];
   publishers: { name: string }[];
   genres: { name: string }[];
@@ -12,5 +12,5 @@ export interface AboutGameProps {
   }[];
   isLoading: boolean;
   isSuccess: boolean;
-  website: string;
+  website: string | undefined;
 }

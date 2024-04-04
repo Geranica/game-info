@@ -40,7 +40,7 @@ const AboutGame = ({
 
   let scoreColor = "about-game__metacritic-score";
 
-  if (metacritic !== null) {
+  if (metacritic !== null && metacritic !== undefined) {
     if (metacritic >= 80) {
       scoreColor += " about-game__metacritic-score_high";
     } else if (metacritic >= 60 && metacritic < 80) {
@@ -50,15 +50,15 @@ const AboutGame = ({
     }
   }
 
-  const cleanDescription = DOMPurify.sanitize(description);
+  const cleanDescription = description ? DOMPurify.sanitize(description) : "";
   const truncatedDescription =
-    cleanDescription.slice(0, 350) +
-    (cleanDescription.length > 350 ? "..." : "");
+    cleanDescription.slice(0, 470) +
+    (cleanDescription.length > 470 ? "..." : "");
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
   const descriptionButton =
-    cleanDescription.length > 350 ? (
+    cleanDescription.length > 470 ? (
       <button
         className="about-game__description-button"
         onClick={toggleDescription}

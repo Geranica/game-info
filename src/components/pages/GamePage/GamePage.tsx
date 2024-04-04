@@ -16,9 +16,21 @@ import "./GamePage.scss";
 
 const GamePage = () => {
   const { gameId } = useParams();
-  const { data: game = [], isSuccess, isLoading } = useGetGameQuery(gameId);
+  const { data: game = {}, isSuccess, isLoading } = useGetGameQuery(gameId);
   const { data: screenshots = [] } = useGetGameScreenshotsQuery(gameId);
 
+  interface Game {
+    gameName?: string;
+    background?: string;
+    description?: string;
+    metacritic?: number;
+    platforms?: [];
+    released?: string;
+    developers?: [];
+    publishers?: [];
+    genres?: [];
+    website?: string;
+  }
   const {
     gameName,
     background,
@@ -30,7 +42,7 @@ const GamePage = () => {
     publishers = [],
     genres = [],
     website,
-  } = game;
+  }: Game = game;
 
   const backgroundImageStyle = {
     backgroundImage: `linear-gradient(to left, rgba(255, 255, 255, 0), #151515), url(${background})`,
