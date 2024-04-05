@@ -1,7 +1,3 @@
-interface Developer {
-  name: string;
-}
-
 interface Publisher {
   name: string;
 }
@@ -36,6 +32,15 @@ export interface Game {
   website: string;
   platforms: Platform[];
   genres: Genre[];
-  developers: Developer[];
+  developers: { name: string }[];
   publishers: Publisher[];
+}
+
+export interface Developer {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+  games: object[];
 }

@@ -1,6 +1,8 @@
 import { ResponceGames, Game, Screenshots } from "./apiSlice.interface";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { transformGame } from "./transormResponse";
+
+import { Developer } from "./apiSlice.interface";
 //import isEqual from "lodash/isEqual";
 
 const _apiKey = "53b00c09574c4413b53b51095b44e4cd";
@@ -92,6 +94,36 @@ export const apiSlice = createApi({
         );
       },
     }),
+    getDevelopers: builder.query({
+      query: ({ page }) =>
+        `/developers?key=${_apiKey}&page_size=18&page=${page}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg.page !== previousArg?.page;
+      },
+      merge: (currentCache, newItems, { arg }) => {
+        if (arg.page === 1) {
+          return newItems;
+        }
+        return {
+          developers: [...currentCache.developers, ...newItems.developers],
+          count: newItems.count,
+        };
+      },
+      transformResponse: (
+        response: {
+          results: Developer[];
+          count: number;
+        } /* , queryApi, */ /* extraOptions */
+      ) => {
+        return {
+          developers: response.results,
+          count: response.count,
+        };
+      },
+    }),
   }),
 });
 
@@ -103,4 +135,5 @@ export const {
   useGetGameAdditionsQuery,
   useGetGameAchievementsQuery,
   useLazyGetGameAchievementsQuery,
+  useGetDevelopersQuery,
 } = apiSlice;

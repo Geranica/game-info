@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ScrollToTop from "../../utils/ScrollToTop";
 
 import Header from "../Header/Header";
-import { MainPage, GamePage } from "../pages";
+import { MainPage, GamePage, DevelopersPage } from "../pages";
 
 import "./App.scss";
 
@@ -16,6 +16,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/game/:gameId/*" element={<GamePage />} />
+            <Route path="/developers" element={<DevelopersPage/>}/>
           </Routes>
         </main>
       </div>
