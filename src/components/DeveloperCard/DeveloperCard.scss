@@ -1,0 +1,39 @@
+@import '../../clamp-builder.scss';
+
+.developer-card {
+  aspect-ratio: 16/9;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 30px 10px 20px 10px;
+  position: relative;
+
+  // .developer-card__container
+
+  &__container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  }
+
+  // .developer-card__name
+
+  &__name {
+   font-size: clampBuilder(19, 25);
+   font-weight: 700;
+   text-align: center;
+   text-decoration: underline;
+   text-underline-offset: 7px;
+   line-height: 1.4;
+  }
+
+   // .developer-card__games-count
+
+   &__games-count {
+      font-size: clampBuilder(16, 18);
+      align-self: flex-start;
+      position: absolute;
+      top: 80%;
+      font-weight: 700;
+   }
+}

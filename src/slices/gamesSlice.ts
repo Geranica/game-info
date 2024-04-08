@@ -40,6 +40,7 @@ const gamesSlise = createSlice({
 const { actions, reducer } = gamesSlise;
 
 export default reducer;
+
 export const {
   nextPage,
   searchGame,
