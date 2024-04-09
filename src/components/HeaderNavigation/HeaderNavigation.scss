@@ -16,18 +16,20 @@
   // .header-navigation__list-element
 
   &__list-element {
+  }
+
+  &__link {
     position: relative;
-    a {
-      color: white;
-      font-weight: 700;
-      font-size: clampBuilder(17, 19);
-      transition: all 0.3s ease;
-      &:hover {
-        color: #f8b400;
-      }
+    color: white;
+    font-weight: 700;
+    font-size: clampBuilder(17, 19);
+    transition: all 0.3s ease;
+    &:hover {
+      color: #f8b400;
     }
 
     &_active {
+      color: #f8b400;
       &::before {
         position: absolute;
         content: "";
@@ -36,9 +38,6 @@
         background-color: #f8b400;
         left: 0;
         bottom: -5px;
-      }
-      a {
-        color: #f8b400;
       }
     }
   }
