@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import HeaderNavigation from "../HeaderNavigation/HeaderNavigation";
 import "./Header.scss";
 
 const Header = () => {
@@ -10,6 +11,7 @@ const Header = () => {
             GameInfo
           </Link>
         </div>
+        <HeaderNavigation/>
       </div>
     </header>
   );

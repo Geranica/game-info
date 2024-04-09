@@ -124,6 +124,28 @@ export const apiSlice = createApi({
         };
       },
     }),
+    getDeveloper: builder.query({
+      query: (id) => `/developers/${id}?key=${_apiKey}`,
+    }),
+    getGamesFromDeveloper: builder.query({
+      query: ({ developer, page }) =>
+        `/games?key=${_apiKey}&page_size=18&page=${page}&developers=${developer}`,
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg.page !== previousArg?.page;
+      },
+      merge: (currentCache, newItems, { arg }) => {
+        if (arg.page === 1) {
+          return newItems;
+        }
+        return {
+          developers: [...currentCache.developers, ...newItems.developers],
+          count: newItems.count,
+        };
+      },
+    }),
   }),
 });
 
@@ -136,4 +158,6 @@ export const {
   useGetGameAchievementsQuery,
   useLazyGetGameAchievementsQuery,
   useGetDevelopersQuery,
+  useGetDeveloperQuery,
+  useGetGamesFromDeveloperQuery,
 } = apiSlice;

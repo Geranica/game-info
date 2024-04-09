@@ -35,6 +35,7 @@ const DevelopersPage = () => {
           name={item.name}
           background={item.image_background}
           gamesCount={item.games_count}
+          id={item.id}
         />
       </li>
     );

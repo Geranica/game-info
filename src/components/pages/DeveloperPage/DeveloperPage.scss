@@ -1,0 +1,54 @@
+@import "../../../clamp-builder.scss";
+
+.developer-page {
+  padding-top: 100px;
+
+  // .developer-page__container
+
+  &__container {
+  }
+
+  // .developer-page__name
+
+  &__name {
+    font-size: clampBuilder(30, 60);
+    font-weight: 700;
+    margin-bottom: clampBuilder(27, 50);
+  }
+
+  // .developer-page__main-content
+
+  &__main-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clampBuilder(20, 30);
+  }
+
+  // .developer-page__description
+
+  &__description {
+    font-size: clampBuilder(15, 18);
+    line-height: 1.4;
+  }
+
+  // .developer-page__image
+
+  &__image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // .developer-page__games-list
+
+  &__games-list-title {
+   margin-top: 30px;
+   font-weight: 700;
+   font-size: clampBuilder(24, 40);
+
+  }
+}

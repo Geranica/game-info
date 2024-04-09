@@ -1,0 +1,45 @@
+@import "../../clamp-builder.scss";
+
+.header-navigation {
+  // .header-navigation__container
+
+  &__container {
+  }
+
+  // .header-navigation__list
+
+  &__list {
+    display: flex;
+    gap: clampBuilder(15, 30);
+  }
+
+  // .header-navigation__list-element
+
+  &__list-element {
+    position: relative;
+    a {
+      color: white;
+      font-weight: 700;
+      font-size: clampBuilder(17, 19);
+      transition: all 0.3s ease;
+      &:hover {
+        color: #f8b400;
+      }
+    }
+
+    &_active {
+      &::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 3px;
+        background-color: #f8b400;
+        left: 0;
+        bottom: -5px;
+      }
+      a {
+        color: #f8b400;
+      }
+    }
+  }
+}

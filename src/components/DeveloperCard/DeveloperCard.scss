@@ -16,6 +16,12 @@
    align-items: center;
   }
 
+  // .developer-card__link
+
+  &__link {
+   color: white;
+}
+
   // .developer-card__name
 
   &__name {
@@ -37,3 +43,5 @@
       font-weight: 700;
    }
 }
+
+
