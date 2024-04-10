@@ -16,22 +16,5 @@
     flex: 0 1 auto;
     padding-top: 30px;
     padding-bottom: 30px;
-
-  }
-
-  // .game-screenshots__screenshot
-
-  &__screenshot {
-    border-radius: 30px 30px 30px 30px;
-    //transform: skew(-15deg);
-    flex: 0 1 50%;
-    overflow: hidden;
-    aspect-ratio: 16/9;
-
-    img {
-      width: 100%;
-      height: 100;
-      object-fit: cover;
-    }
   }
 }

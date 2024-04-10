@@ -24,6 +24,17 @@
     font-weight: 700;
     font-size: clampBuilder(17, 19);
     transition: all 0.3s ease;
+    &::before {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 3px;
+      background-color: #f8b400;
+      left: 0;
+      bottom: -4px;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
     &:hover {
       color: #f8b400;
     }
@@ -31,13 +42,7 @@
     &_active {
       color: #f8b400;
       &::before {
-        position: absolute;
-        content: "";
-        width: 100%;
-        height: 3px;
-        background-color: #f8b400;
-        left: 0;
-        bottom: -5px;
+        opacity: 1;
       }
     }
   }
