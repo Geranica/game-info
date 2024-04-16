@@ -1,0 +1,70 @@
+.content-enter {
+  opacity: 0;
+  transform: scale(0.01);
+}
+
+.content-enter-active {
+  transition: opacity 100ms ease-out 200ms, transform 100ms ease-out 200ms;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.content-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.content-exit-active {
+  opacity: 0;
+  transform: scale(0.01);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.overlay-enter {
+  opacity: 0;
+}
+
+.overlay-enter-active {
+  transition: opacity 300ms ease-out;
+  opacity: 1;
+}
+
+.overlay-exit {
+  opacity: 1;
+}
+
+.overlay-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+}
+.layout-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.layout-modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.layout-modal-content {
+  width: 75%;
+}

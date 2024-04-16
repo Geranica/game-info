@@ -85,7 +85,7 @@ export const apiSlice = createApi({
       },
     }),
     getGameAchievements: builder.query({
-      query: (id) => `/games/${id}/achievements?key=${_apiKey}&page_size=200`,
+      query: (id) => `/games/${id}/achievements?key=${_apiKey}&page_size=150`,
       transformResponse: (response: { results: [] }) => {
         const copyArr = [...response.results];
         return copyArr.sort(
