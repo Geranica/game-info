@@ -22,8 +22,14 @@ const GameScreenshot = ({ screenshot }: { screenshot: string }) => {
       <div onClick={toggleModal} className="game-screenshot">
         <img src={screenshot} alt={`screenshot-${screenshot}`} />
       </div>
-      <div className="">
-        <div onClick={toggleModal} className={modalStyles}>
+      <div onClick={toggleModal} className={modalStyles}>
+        <div
+          className={
+            isModalOpen
+              ? "game-screenshot-modal__screenshot game-screenshot-modal__screenshot_active"
+              : "game-screenshot-modal__screenshot"
+          }
+        >
           <img src={screenshot} alt={`screenshot-modal-${screenshot}`} />
         </div>
       </div>
